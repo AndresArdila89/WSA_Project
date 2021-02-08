@@ -1,0 +1,142 @@
+:root{
+    --ash-gray: #b4b8abff;
+    --gunmetal: #153243ff;
+    --indigo-dye: #284b63ff;
+    --ivory: #f4f9e9ff;
+    --baby-powder: #eef0ebff;
+    
+    --russian-violet: #241e4eff;
+    --dark-red: #960200ff;
+    --copper-red: #ce6c47ff;
+    --sunglow: #ffd046ff;
+    --medium-champagne: #eadaa2ff;
+}
+
+.primary {
+    background-color:#2D3047;
+}
+
+.secondary {
+    background-color: #93B7BE;
+}
+
+.third{
+    background-color: #E0CA3C;
+}
+
+.fourth {
+    background-color: #A799B7;
+}
+
+.fifth {
+    background-color: #048A81;
+}
+
+.sixth {
+    background-color: #3c5f5d;
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*--------------------- grid ----------------------- */
+/* vh is Relative to 1% of the height of the viewport */
+
+.app-layout {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns:  [one-eighty] 180px
+                            [one-eighty] 180px
+                            [one-eighty] 180px;
+
+    grid-template-rows: [head-row] auto
+                        [content-row] auto
+                        [content-row] auto
+                        [content-row] auto
+                        [footer-row] auto;
+
+}
+
+.header {
+    background-color: #048A81;
+    grid-column: one-eighty 1 / one-eighty 4;
+    grid-row: head-row / content-row 1;
+}
+
+.sidebar {
+    background-color: #2D3047;
+    grid-column: one-eighty 1 / one-eighty 2;
+    grid-row: content-row 1 / content-row 2;
+}
+
+.advert {
+    background-color: #A799B7;
+    grid-column: one-eighty 1 / one-eighty 2;
+    grid-row: content-row 2 / content-row 3;
+}
+
+
+.content {
+    background-color: #93B7BE;
+    grid-column: one-eighty 2 / one-eighty 4;
+    grid-row: content-row 1 / span content-row 2;
+
+}
+
+.footer {
+    background-color: #E0CA3C;
+    grid-column: one-eighty 1 / span one-eighty 3;
+    grid-row: content-row 3 / footer-row;
+}
+
+
+/* ---------------------- Top bar --------------------------- */
+/* fr unit is a fractional part of the space available  */
+.top-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    color: white;
+}
+
+/* -------------- Navigation bar components ----------------- */
+
+nav {
+    background-color: #2D3047;
+    padding: 50px;
+    width: 100%;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ajust the page to a screen resolution of 1024 and less */
+
+@media screen and (max-width: 1024px) {
+    .app-layout {
+        grid-template-columns:  [one-eighty] 180px;
+        
+        
+    }
+}
