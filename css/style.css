@@ -53,16 +53,15 @@ body {
 .app-layout {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns:  [one-eighty] 180px
-                            [one-eighty] 180px
-                            [one-eighty] 180px;
+    grid-template-columns:  [one-eighty] 1fr
+                            [one-eighty] 1fr
+                            [one-eighty] 1fr;
 
     grid-template-rows: [head-row] auto
                         [content-row] auto
                         [content-row] auto
                         [content-row] auto
                         [footer-row] auto;
-
 }
 
 .header {
@@ -91,7 +90,7 @@ body {
 
 }
 
-.footer {
+.wide-content {
     background-color: #E0CA3C;
     grid-column: one-eighty 1 / span one-eighty 3;
     grid-row: content-row 3 / footer-row;
@@ -122,10 +121,19 @@ nav a {
 
 }
 
+/*---------------- Footer bar component -------------------*/
 
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    color: #93B7BE;
+    background-color: #2D3047;
+}
 
-
-
+.copyright {
+    grid-column: 2/3;
+}
 
 
 
@@ -134,9 +142,30 @@ nav a {
 /* ajust the page to a screen resolution of 1024 and less */
 
 @media screen and (max-width: 1024px) {
-    .app-layout {
-        grid-template-columns:  [one-eighty] 180px;
-        
-        
+
+
+
+    .top-bar {
+        display: none;
     }
+
+    
+
+    .sidebar {
+
+        display: none;
+    }
+    
+    .advert {
+
+        display: none;
+    }
+
+    .content {
+
+        grid-column: one-eighty 1 / one-eighty 4;
+        grid-row: content-row 1 / span content-row 2;
+    
+    }
+
 }

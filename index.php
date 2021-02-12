@@ -4,7 +4,7 @@
   include "loader.php";
   // the loadComponet function receives as a parameter a string 
   // with the name of the componet that should be included.
-  loadComponent("header");
+  loadComponent("head");
 ?>
 
 <div class="top-bar primary">
@@ -19,13 +19,14 @@
 app-layout wraps the entire page, the page is build using css GRID.
      
 -->
+<?php loadComponent('navbar') ?>
 <div class="app-layout">
-    <div class="header"><?php loadComponent('navbar') ?></div>
+    <div class="header">Header temp</div>
     <div class="sidebar">SIDEBAR</div>
     <div class="advert">ADVERT</div>
     <div class="content">CONTENT</div>
-    <div class="footer">FOOTER</div>
+    <div class="wide-content">WIDE CONTENT</div>
 </div>
 
-<?php include "components/footer.php"?>
+<?php loadComponent("footer");?>
 

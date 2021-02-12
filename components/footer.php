@@ -1,7 +1,7 @@
 
 
 <footer>
-    <p>Copyright 2021 Andres Ardila</p>
+    <p class="copyright">Copyright &copy; Andres Ardila <?php echo date("Y"); ?></p>
 </footer>
 
 
