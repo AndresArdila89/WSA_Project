@@ -1,11 +1,12 @@
-<header>
-<div><h2>The logo</h2></div>
+<header class="nav-grid">
+<div class="nav-logo">
+  <span>Mug&Code</span>
+</div>
 
-<nav>
+<nav class="main-navbar">
   <a href="index.php">Home</a>
   <a href="shop.php">Shop</a>
   <a href="list.php">List</a> 
 </nav>
-
 
 </header>

@@ -1,7 +1,6 @@
 <?php
     $URL_STATIC = "./css/";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

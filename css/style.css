@@ -46,6 +46,11 @@ body {
     padding: 0;
 }
 
+.image-full-width{
+    width: 100%;
+    height: auto;
+}
+
 
 /*--------------------- grid ----------------------- */
 /* vh is Relative to 1% of the height of the viewport */
@@ -57,17 +62,40 @@ body {
                             [one-eighty] 1fr
                             [one-eighty] 1fr;
 
-    grid-template-rows: [head-row] auto
+    grid-template-rows: [banner-row] auto
+                        [about-row] auto
                         [content-row] auto
                         [content-row] auto
                         [content-row] auto
                         [footer-row] auto;
 }
 
-.header {
+.banner {
     background-color: #048A81;
     grid-column: one-eighty 1 / one-eighty 4;
-    grid-row: head-row / content-row 1;
+    grid-row: banner-row / about-row 1;
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #93B7BE;
+    grid-column: one-eighty 1 / one-eighty 4;
+    grid-row: about-row / content-row 1;
+}
+.about p {
+    margin: 10px 10px 10px 10px;
+    min-width: 150px;
+    min-height: 150px;
+    flex-grow: 2;
+
+
+    border: #2D3047 solid 1px;
+    text-align: center;
+    
 }
 
 .sidebar {
@@ -108,18 +136,46 @@ body {
 
 /* -------------- Navigation bar components ----------------- */
 
-nav {
+.nav-grid {
+    display: grid;
     background-color: #2D3047;
-    padding: 50px;
-    width: 100%;
+    grid-template-columns:  [logo] 1fr 
+                            [navigation] 1fr
+                            [navigation] 1fr 
+                            [navigation] 1fr;
+
+    grid-template-rows: [firstNav-row] auto;
+                            
 }
 
-nav a {
+.main-navbar {
+    grid-column: navigation 1 / navigation 4;
+    grid-row: firstNav-row;
+    padding: 50px;
+
+}
+
+.main-navbar a {
     color: white;
     text-decoration: none;
     text-align: center;
-
+    padding: 0 20px 0 20px;
 }
+
+
+.nav-logo {
+    grid-column: logo 1 / navigation 1;
+    grid-row: firstNav-row;
+    color: #93B7BE;
+    padding: 50px;
+    text-align: center;
+}
+.nav-logo span {
+    
+    font-size: larger;
+    font-weight: bold;
+}
+
 
 /*---------------- Footer bar component -------------------*/
 
@@ -149,8 +205,6 @@ footer {
         display: none;
     }
 
-    
-
     .sidebar {
 
         display: none;
@@ -167,5 +221,26 @@ footer {
         grid-row: content-row 1 / span content-row 2;
     
     }
+
+
+    .nav-grid {
+        grid-template-rows: [firstNav-row] auto
+                            [secondNav-row] auto;
+                                
+    }
+
+    .main-navbar {
+        grid-column: logo 1 / navigation 4;
+        grid-row: secondNav-row;
+
+    
+    }
+
+    .nav-logo {
+        grid-column: logo 1 / navigation 4;
+        grid-row: firstNav-row;
+
+    }
+
 
 }
