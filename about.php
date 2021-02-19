@@ -12,12 +12,11 @@
 
   // The loader.php file is included in order to call all 
   // the functions required to load reusable html code.
-  include "includes/loader.php";
+  include "loader.php";
   // the loadComponet function receives as a parameter a string 
   // with the name of the componet that should be included.
   loadComponent("head");
   loadComponent("topBar");
-  $ads_array = array('ads_1.png','ads_2.png','ads_3.png');
 ?>
 
 
@@ -28,7 +27,7 @@
 <?php loadComponent('navbar') ?>
 
 <div class="app-layout">
-    <div class="banner"> <?php adsRandom(FILE_BANNER_IMAGES,'image-full-width'); ?></div>
+    <div class="banner"> <img class="image-full-width" src="images/banner.jpg"> </div>
     <div class="about">
        <p>item one</p>
        <p>item one</p>
@@ -38,7 +37,7 @@
        <p>item one</p>
     </div>
     <div class="sidebar">SIDEBAR</div>
-    <div class="advert"><?php adsRandom($ads_array,'adsRandom'); ?></div>
+    <div class="advert">ADVERT</div>
     <div class="content">CONTENT</div>
     <div class="wide-content">WIDE CONTENT</div>
 </div>

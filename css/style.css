@@ -78,6 +78,7 @@ body {
     overflow: hidden;
 }
 
+
 .about {
     display: flex;
     justify-content: center;
@@ -105,9 +106,24 @@ body {
 }
 
 .advert {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     background-color: #A799B7;
     grid-column: one-eighty 1 / one-eighty 2;
     grid-row: content-row 2 / content-row 3;
+
+        
+}
+
+.adsRandom{
+    height: 150px;
+    width: 150px;
+    
+}
+
+.bigAds {
+    width: 100%;
 }
 
 

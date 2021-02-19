@@ -4,9 +4,10 @@
 </div>
 
 <nav class="main-navbar">
-  <a href="index.php">Home</a>
-  <a href="shop.php">Shop</a>
-  <a href="list.php">List</a> 
+  <a href=<?php echo PAGE_HOME;  ?>>Home</a>
+  <a href=<?php echo PAGE_SHOP; ?>>Shop</a>
+  <a href=<?php echo PAGE_ABOUT;  ?>>About Us</a>
+  <a href=<?php echo 'form.php';  ?>>form</a> 
 </nav>
 
 </header>
