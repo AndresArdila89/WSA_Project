@@ -1,4 +1,11 @@
 <?php
+
+function loadHead($title){
+    
+    include_once "components/head.php";
+}
+
+
 function loadComponent($component){
     
     include "components/$component.php";
@@ -7,7 +14,7 @@ function loadComponent($component){
 function loadImage($imageName,$class=''){
 
     $image = FOLDER_IMAGES . $imageName;
-    echo "<img src='$image' class='$class'></img>";
+    echo "<img src='$image' class='$class'/>";
 }
 
 function adsRandom($imageArray,$class=''){
