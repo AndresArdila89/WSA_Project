@@ -1,13 +1,12 @@
 <?php
   // The loader.php file is included in order to call all 
   // the functions required to load reusable html code.
-  include "includes/loader.php";
+  require_once "includes/loader.php";
   // the loadComponet function receives as a parameter a string 
   // with the name of the componet that should be included.
   loadHead("Home");
   loadComponent("topBar");
   loadComponent("navbar");
-  // $ads_array contain all the images names for the adds 
   $ads_array = array('ads_1.png','ads_2.png','ads_3.png');
 ?>
 
