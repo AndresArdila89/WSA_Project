@@ -249,10 +249,9 @@ footer {
     
 }
 
+/* all elements inside the form section have a margine of 5 px */
 .form-section *{
-    
     margin: 5px;
-    
 }
 
 
