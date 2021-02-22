@@ -83,13 +83,13 @@ body {
 .page_title {
     color:#E0CA3C ;
     background-color: rgba(0, 0, 0, 0.6);
-    padding: 20PX;
+    padding: 20px;
     text-align: center;
     grid-column: one-eighty 1 / one-eighty 4;
     grid-row: banner-row 1 / banner-row 2;
-    width: 100%;
+    
     margin: 0;
-    justify-self: center;
+   
     
     
 
@@ -226,7 +226,44 @@ footer {
 }
 
 
+/*------------------------ FORMS ---------------------------*/
 
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    
+}
+
+
+.form-section{
+    display: flex;
+    width: 100%;
+     
+}
+
+.form-element{
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+    
+}
+
+.form-section *{
+    
+    margin: 5px;
+    
+}
+
+
+
+/* ------------------ BUTTONS --------------------*/
+
+button {
+    padding: 5px;
+
+    
+}
 
 
 /* ajust the page to a screen resolution of 1024 and less */
