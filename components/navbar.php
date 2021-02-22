@@ -1,13 +1,14 @@
 <header class="nav-grid">
-<div class="nav-logo">
-  <span>Mug&Code</span>
-</div>
-
-<nav class="main-navbar">
-  <a href=<?php echo PAGE_HOME;   ?>>Home</a>
-  <a href=<?php echo PAGE_SHOP;   ?>>Shop</a>
-  <a href=<?php echo PAGE_ABOUT;  ?>>About Us</a>
-  <a href=<?php echo 'playground.php';  ?>>Playground</a> 
-</nav>
-
+  <div class="nav-logo">
+    <span>Mug&Code</span>
+  </div>
+  <nav class="main-navbar">
+    <?php
+    //the foreach is supported since PHP4
+      foreach(NAV_TABS as $tab=>$tab_value)
+      {
+        echo "<a href='$tab_value'>$tab</a>";
+      }
+    ?>
+  </nav>
 </header>

@@ -1,9 +1,10 @@
-<?php
+<?php 
+require_once "constants.php";
 // This function loads the head file and recibes as a parameter
 // the title of the page, this value changes the name of the page tab.
 function loadHead($title){
     
-    include_once "components/head.php";
+    include_once FOLDER_COMPONENTS . "head.php";
 }
 
 // This function loads components from the componets folder
@@ -11,17 +12,25 @@ function loadHead($title){
 // includes the component in the file where the function is called. 
 function loadComponent($component){
     
-    include "components/$component.php";
+    include FOLDER_COMPONENTS . "$component.php";
 }
 
 // This funtion loads images it recives two parameters, 
 // image name [file_name.file_type] and class name [class_name]
 // FOLDER_IMAGE is a constant define in the constants.php. 
-// FOLDER_IMAGE  contain the folder path to the images of the website. 
-function loadImage($imageName,$class=''){
+// FOLDER_IMAGE  contain the folder path to the images of the website.
+// When the link parameter is true the image will have a link to a page outside of the site.
+function loadImage($imageName,$class='',$link=false){
 
     $image = FOLDER_IMAGES . $imageName;
-    echo "<img src='$image' class='$class'/>";
+    if($link){
+        echo "<a href='https://scrumfit.co/'><img src='$image' class='$class'/></a>";
+    }
+    else
+    {
+        echo "<img src='$image' class='$class'/>";
+    }
+    
 }
 
 // This function receives 2 arguments, an array with names of 
@@ -39,6 +48,17 @@ function adsRandom($imageArray,$class=''){
         $class = 'bigAds';
     }
     
-    loadImage($imageArray[0],$class);
+    loadImage($imageArray[0],$class,true);
 
+}
+
+// head funciton
+
+function loadTopElements($pageName){
+    loadHead($pageName);
+    // the loadComponet function receives as a parameter a string 
+    // with the name of the componet that should be included.
+    loadComponent("topBar");
+    loadComponent("navbar");
+    
 }

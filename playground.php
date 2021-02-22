@@ -1,5 +1,4 @@
 <?php
-
   include "includes/loader.php";
   loadComponent("head");
   loadComponent("topBar");
