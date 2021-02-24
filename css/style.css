@@ -249,19 +249,21 @@ footer {
     
 }
 
-/* all elements inside the form section have a margine of 5 px */
+/* all elements inside the form section have a margine of 5 px  */
 .form-section *{
     margin: 5px;
 }
 
+.form-error{
+    color: rgb(200, 0, 0);
+    font-size: smaller;
+}
 
 
 /* ------------------ BUTTONS --------------------*/
 
-button {
+.button {
     padding: 5px;
-
-    
 }
 
 
