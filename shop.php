@@ -21,203 +21,113 @@
 #Andres Ardila (student_id)   2021-02-23    created a function to detect if the string has a number
 #Andres Ardila (student_id)   2021-02-23    created the validation for the fields first name, lastname
 #                                           city, price and quantity for the shop page.
-
+#Andres Ardila (student_id)   2021-02-24    improved the validation of the form
+#Andres Ardila (student_id)   2021-02-24    added a success message when the form is fill correectly
+#Andres Ardila (student_id)   2021-02-24    added the functionality of clearing all the fields when 
+#                                           the form is filled correctly
+#Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
 ?>
+
 <?php require_once "includes/loader.php";?>
-<?php require_once "includes/validation.php";?>
+<?php 
+require_once "includes/validation.php";
+require_once 'includes/form.val.php';
+?>
+
+
+
+
+
 <?php loadTopElements("HOME");?>
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->
-<?php 
-    $errorProductCode = "";
-    $errorFirstName ="";
-    $errorLastName = "";
-    $errorCity ="";
-    $errorPrice = "";
-    $errorQuantity = "";
-    $errorComments = "";
 
-
-
-
-
-
-    if(isset($_POST["Buy"]))
-    {
-      $firstName = htmlspecialchars(trim($_POST['first_name']));
-      $lastName = htmlspecialchars(trim($_POST['last_name']));
-      $city = htmlspecialchars(trim($_POST['city']));
-      $price = htmlspecialchars(trim($_POST['price']));
-      $quantity = htmlspecialchars(trim($_POST['quantity']));
-      $comments = htmlspecialchars(trim($_POST['comments']));
-
-      
-      //Product Code
-      if($firstName == '')
-      {
-        $errorFirstName = "Fild must not be empty";
-      }
-      else
-      {
-        if(hasNumbers($firstName))
-        {
-          $errorFirstName = "Name must not contain Numbers";
-        }
-      }     
-
-      //First name validation
-      if($firstName == '')
-      {
-        $errorFirstName = "Fild must not be empty";
-      }
-      else
-      {
-        if(hasNumbers($firstName))
-        {
-          $errorFirstName = "Name must not contain Numbers";
-        }
-      }
-
-      // Last name validation
-      if($lastName == '')
-      {
-        $errorLastName = "Fild must not be empty";
-      }
-      else
-      {
-        if(hasNumbers($lastName))
-        {
-          $errorLastName = "Name must not contain Numbers";
-        }
-      }
-
-      // City validation
-      if($city == '')
-      {
-        $errorCity = "Fild must not be empty";
-      }
-      else
-      {
-        if(hasNumbers($city))
-        {
-          $errorCity = "Name must not contain Numbers";
-        }
-      }
-
-      // Price validation
-      if($price == '')
-      {
-        $errorPrice = "Fild must not be empty";
-      }
-      else
-      {
-        if(!is_numeric($price))
-        {
-          $errorPrice = "Input numbers only";
-        }
-      }
-
-      // Quantity validation
-      if($quantity == '')
-      {
-        $errorQuantity = "Fild must not be empty";
-      }
-      else
-      {
-        if(!is_numeric($quantity))
-        {
-          $errorQuantity = "Input numbers only";
-        }
-        else 
-        {
-          $dot = strpos($quantity,".");
-          // strpos returns and integer or false in case of not finding the dot character inthe string
-          // When the $dot variable is equal to any integer if takes it as a true statement.
-          if($dot) 
-          {
-            $errorQuantity = "Input integer numbers only";
-          }
-        }
-      }
-
-
-    
-    }
-
-?>
 <div class="app-layout">
-    <div class="banner"> 
-      <?php loadImage("banner.jpg",'image-full-width'); ?>
-    </div>
-    <h1 class="page_title">Homepage</h1>
-    
-    <div class="advert" id="ads">adds</div>
+  <div class="banner"> 
+    <?php loadImage("banner.jpg",'image-full-width'); ?>
+  </div>
 
-    <div class="content">
-            <form action="shop.php" method="post" class="form">
-              <!-- ROW -->
-              <div class="form-section"> 
-                <div class="form-element">
-                  <label for="product_code">Product Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
-                  <input type="text" id="product_code" name="product_code">
-                </div>
-              </div>
+  <h1 class="page_title">Homepage</h1>
+  
+  <div class="advert" id="ads">adds</div>
 
-              <!-- ROW -->
-              <div class="form-section">
-                <!-- FIRST NAME-->
-                <div class="form-element">
-                  <label for="first_name">First Name: <span class="form-error"><?php echo $errorFirstName; ?></span></label>
-                  <input type="text" id="first_name" name="first_name" value=<?php echo $_POST['first_name'];?> >
-                </div>
-                <!-- LAST NAME -->
-                <div class="form-element">
-                  <label for="last_name">Last Name: <span class="form-error"><?php echo $errorLastName; ?></span></label>
-                  <input type="text" id="last_name" name="last_name">
-                </div>
-              </div>
+  <div class="content">
 
-              <!-- ROW -->
-              <div class="form-section">
-                <!-- CITY -->
-                <div class="form-element"> 
-                  <label for="city">City: <span class="form-error"><?php echo $errorCity; ?></span></label>
-                  <input type="text" id="city" name="city">
-                </div>
-              </div>
 
-              <!-- ROW -->
-              <div class="form-section">
-                <!-- PRICE -->
-                <div class="form-element"> 
-                  <label for="price">Price: <span class="form-error"><?php echo $errorPrice; ?></span></label>
-                  <input type="text" id="price" name="price">
-                </div>
-                <!-- QUANTITY -->
-                <div class="form-element"> 
-                  <label for="quantity">Quantity: <span class="form-error"><?php echo $errorQuantity; ?></span></label>
-                  <input type="text" id="quantity" name="quantity">
-                </div>
-              </div>
 
-              <!-- ROW -->
-              <div class="form-section">
-                <!-- COMMENTS -->
-                <div class="form-element">
-                  <label for="comments">Comments: <span class="form-error"><?php echo $errorComments; ?></span></label>
-                  <textarea  id="comments" name="comments"></textarea>
-                </div>
-              </div>
+    <form action="shop.php" method="post" class="form">
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label for="product_code">Product Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text" id="product_code" name="product_code" value=<?php echo $productCode;?>>
+        </div>
+      </div>
 
-              <!-- ROW -->
-              <div class="form-section">
-                <!-- COMMENTS -->
-                <div class="form-element">
-                  <button class="button" type="submit" name="Buy">Buy</button>
-                </div>
-              </div>
-            </form>
-    </div>
-    <div class="wide-content">WIDE CONTENT</div>
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- FIRST NAME-->
+        <div class="form-element">
+          <label for="first_name">First Name: <span class="form-error"><?php echo $errorFirstName; ?></span></label>
+          <input type="text" id="first_name" name="first_name" value=<?php echo $firstName;?> >
+        </div>
+        <!-- LAST NAME -->
+        <div class="form-element">
+          <label for="last_name">Last Name: <span class="form-error"><?php echo $errorLastName; ?></span></label>
+          <input type="text" id="last_name" name="last_name" value=<?php echo $lastName;?>>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- CITY -->
+        <div class="form-element"> 
+          <label for="city">City: <span class="form-error"><?php echo $errorCity; ?></span></label>
+          <input type="text" id="city" name="city" value=<?php echo $city;?>>
+        </div>
+        <!-- PRICE -->
+        <div class="form-element"> 
+          <label for="price">Price: <span class="form-error"><?php echo $errorPrice; ?></span></label>
+          <input type="text" id="price" name="price" value=<?php echo $price;?>>
+        </div>
+        <!-- QUANTITY -->
+        <div class="form-element"> 
+          <label for="quantity">Quantity: <span class="form-error"><?php echo $errorQuantity; ?></span></label>
+          <input type="text" id="quantity" name="quantity" value=<?php echo $quantity;?>>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+          <label for="comments">Comments: <span class="form-error"><?php echo $errorComments; ?></span></label>
+          <textarea  id="comments" name="comments" value=<?php echo $comments;?>></textarea>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+          <input type="radio" id="agree" name="terms" value="agree">
+          <label for="agree">Agree</label>
+        </div>
+        <div class="form-element">
+          <input type="radio" id="disagree" name="terms" value="disagree">
+          <label for="disagree">Disagree</label>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+          <button class="button" type="submit" name="Buy">Buy</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="wide-content">WIDE CONTENT</div>
 </div>
 
 <?php loadComponent("footer");?>

@@ -9,57 +9,103 @@
 <?php loadComponent('navbar') ?>
 
 
-
 <?php 
+#   3 types of error:
+#       compile error: the code could not even start
+#       runtime error: error which happens WHILE the code is running
+#       logical error: 
 
+    $debug = false;
 
+    function manageError($Number, $Message, $File, $Line){
+        global $debug;
+        echo    "An error occured. The dev team is already...";
+        if($debug)
+        {
+            echo    "An error ocoure in the file $File at line $Line:" .
+            "Error number $Number: $Message.";
+        }
+        else
+        {
+            $fileHandle = fopen("logs/erros.txt","a")  or die("killing PHP");
+            fwrite($fileHandle, "An error ocoure in the file $File at line $Line:" .
+            "Error number $Number: $Message. \r\n");
 
-    echo $_SERVER['SCRIPT_FILENAME'];
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br> POST: <br>";
-    var_dump($_POST);
-    echo "<br> GET: <br>";
-    var_dump($_GET);
-    echo "<br> REQUEST: <br>";
-    var_dump($_REQUEST);
-    var_dump($_POST["save"]);
+            fclose($fileHandle);
+        }
+        die();
 
-
-    if(isset($_POST["save"])){
-        
-        #filter #1
-        echo "<br><br>Fileter #1 SANIZE STRING: <br>";
-        echo filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_STRING);
-        
-        #filter #2
-        echo "<br><br>Fileter #2 SANIZE STRING: <br>";
-        echo filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        
-        #filter #3
-        echo "<br><br>Fileter #3 SANIZE STRING: <br>";
-        echo htmlspecialchars($_POST["firstname"]);
-
-        #filter #4
-        echo "<br><br>Fileter #4 SANIZE STRING: <br>";
-        echo htmlentities($_POST["firstname"]);
-
-        //echo "Welcome " . $_POST["firstname"];
     }
-    else
+
+    function manageException($errorObject)
     {
-        echo "no user detected";
+        global $debug;
+
+        if($debug)
+        {
+            echo    " An error occured in the file " . $errorObject->getFile() . "at line " .
+                    $errorObject->GetLine() . " " . $errorObject->getMessage();
+        }
+        else
+        {
+            $fileHandle = fopen("logs/exceptions.txt","a")  or die("killing PHP");
+            fwrite($fileHandle, " An error occured in the file " . $errorObject->getFile() . "at line " .
+            $errorObject->GetLine() . " " . $errorObject->getMessage() . "\r\n");
+
+            fclose($fileHandle);
+        }
+        
     }
+
+    set_error_handler("manageError");
+    set_exception_handler("manageException");
+
+#   error: a problem occured when calling PHP functions
+#   exceptions: a problem occured when running error PHP functions
+
 ?>
 
-<form action="form.php" method="POST">
-    <p>
-    <label>First Name</label>
-    <input type="text" name="firstname"/>
-</p>
-    <input type="submit" value="save" name="save"/>
-</form>
+
+
+
+
+<?php 
+//w = write to file
+//a = append to file 
+    // $fileHandle = fopen("data/sale.html","w")  or die("killing PHP");
+
+    // fwrite($fileHandle, "two mug sold \r\n");
+    // fwrite($fileHandle, "two mug sold \r\n");
+    // fwrite($fileHandle, "two mug sold \r\n");
+    // fclose($fileHandle);
+    
+
+    // echo "file created";
+
+
+    $x = 5/0;
+
+    if(file_exists("data/sale.txt"))
+    {
+        $fileHandle = fopen("data/sale.txt","r") or die("killing php");
+    
+        while(! feof($fileHandle))
+        {
+            echo fgets($fileHandle);
+            echo "<br>";
+        }
+
+        fclose($fileHandle);
+    }
+    
+
+
+
+
+?>
+
+
+
 
 
 

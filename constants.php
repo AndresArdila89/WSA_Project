@@ -25,4 +25,15 @@ define("NAV_TABS",array('HOME'=> PAGE_HOME,
                         'ABOUT US'=> PAGE_ABOUT,
                         'PLAYGROUND'=> PAGE_PLAYGROUND
                         ));
+
+//VALIDATION FORM CONSTANTS
+define("PRODUCT_CODE_MAX_LEN",12);
+define("FIRST_NAME_MAX_LEN",20);
+define("LAST_NAME_MAX_LEN",20);
+define("CITY_MAX_LEN",8);
+define("COMMENTS_MAX_LEN",200);
+define("PRICE_MAX_VAL",10000);
+define("QUANTITY_MIN_VAL",1);
+define("QUANTITY_MAX_VAL",99);
+define("PRODUCT_CODE_INIT_CHAR",'p');
 ?>
