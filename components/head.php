@@ -1,5 +1,8 @@
 <?php
-print_r($_POST);
+#Revision history:
+#
+#DEVELOPER                    DATE:         COMMNETS
+#Andres Ardila (student_id)   2021-03-03    remove var_dump
 ?>
 <!DOCTYPE html>
 <html lang="en">

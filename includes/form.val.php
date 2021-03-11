@@ -1,4 +1,9 @@
 <?php
+#Revision history:
+#
+#DEVELOPER                    DATE:         COMMNETS
+#Andres Ardila (student_id)   2021-02-28    created all the validations for the form 
+#Andres Ardila (student_id)   2021-03-10    created a function to load ordes from a json file
 
 $errorProductCode = "";
 $errorFirstName ="";
@@ -162,8 +167,27 @@ if(isset($_POST["Buy"]))
         $success = false;
       }
       if($success){
-        header("location: playground.php");
+        $subTotal = $price * $quantity;
+        $taxAmount = $subTotal * VALUE_TAX;
+        $grandTotal = $subTotal + $taxAmount;
+      
+        $order = [
+                  'productCode' =>  $productCode,
+                  'firstName'   =>  $firstName,
+                  'lastName'    =>  $lastName,
+                  'city'        =>  $city,
+                  'price'       =>  $price,
+                  'quantity'    =>  $quantity,
+                  'comments'    =>  $comments,
+                  'subTotal'    =>  round($subTotal,2),
+                  'taxAmount'   =>  round($taxAmount,2),
+                  'grandTotal'  =>  round($grandTotal,2)
+                  ];
+
+        appendOrder($order,FILE_ORDERS);
+        header("location: success.php");
         die();
       }
 
 }
+

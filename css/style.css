@@ -35,6 +35,9 @@
 .sixth {
     background-color: #3c5f5d;
 }
+.white {
+    background-color: white;
+}
 
 
 html {
@@ -51,6 +54,9 @@ body {
     height: auto;
 }
 
+.center-text{
+    text-align: center;
+}
 
 /*--------------------- grid ----------------------- */
 /* vh is Relative to 1% of the height of the viewport */
@@ -73,7 +79,7 @@ body {
 }
 
 .banner {
-    background-color: #048A81;
+    
     grid-column: one-eighty 1 / one-eighty 4;
     grid-row: banner-row / about-row 1;
     max-height: 600px;
@@ -87,19 +93,14 @@ body {
     text-align: center;
     grid-column: one-eighty 1 / one-eighty 4;
     grid-row: banner-row 1 / banner-row 2;
-    
     margin: 0;
-   
-    
-    
-
 }
 
 .about {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #93B7BE;
+
     grid-column: one-eighty 1 / one-eighty 4;
     grid-row: about-row / content-row 1;
 }
@@ -271,6 +272,16 @@ footer {
 }
 .blueFont{
     color: blue;
+}
+
+.red-text{
+    color: red;
+}
+.lightOrange-text{
+    color: orange;
+}
+.green-text{
+    color: green;
 }
 
 /* ------------------ BUTTONS --------------------*/

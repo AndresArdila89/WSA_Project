@@ -62,3 +62,92 @@ function loadTopElements($pageName){
     loadComponent("navbar");
     
 }
+
+// ORDER FILE HANDLING 
+function appendOrder($order,$path)
+{
+  $orderFileContent = file_get_contents($path);
+  $array_orders = json_decode($orderFileContent);
+  $array_orders [] = $order;
+  $json_orders = json_encode($array_orders);
+  file_put_contents($path,$json_orders);
+}
+
+
+//ORDERS TABLE
+
+function loadOrders()
+{
+    $myfile = file_get_contents(FILE_ORDERS);
+    $array_order_json = json_decode($myfile,true);
+
+    ?>
+    <table>
+    <tr>
+    <th>Product Code</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>City</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Comment</th>
+    <th>Sub Total</th>
+    <th>Tax Amount</th>
+    <th>Grand Total</th>
+    </tr>
+    <?php 
+        foreach($array_order_json as $value)
+        {
+    ?>
+
+    <tr>
+    <td><?php echo $value["productCode"]; ?></td>
+    <td><?php echo $value["firstName"]; ?></td>
+    <td><?php echo $value["lastName"]; ?></td>
+    <td><?php echo $value["city"]; ?></td>
+    <td><?php echo $value["price"]. '$'; ?></td>
+    <td><?php echo $value["quantity"]; ?></td>
+    <td><?php echo $value["comments"]; ?></td>
+    <td class="<?php changeSubTotalColor($value["subTotal"]); ?>"><?php echo $value["subTotal"]. '$'; ?></td>
+    <td><?php echo $value["taxAmount"]. '$'; ?></td>
+    <td><?php echo $value["grandTotal"] . '$'; ?></td>
+    </tr>
+    <?php 
+        }
+    ?>
+    </table>
+    <?php
+}
+
+
+
+function changeSubTotalColor($value){
+    if($_GET['command'] == 'color')
+    {
+        if($value < 100){
+            echo "red-text";
+        }
+        elseif($value < 1000)
+        {
+            echo "lightOrange-text";
+        }
+        else
+        {
+            echo "green-text";
+        }
+    }    
+}
+
+function bgChange(){
+    if($_GET['command'] == 'print')
+    {
+        echo 'white';
+    }
+    else
+    {
+        echo 'primary';
+    }
+
+}
+
+?>

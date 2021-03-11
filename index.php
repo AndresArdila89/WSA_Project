@@ -1,3 +1,11 @@
+<?php 
+#Revision history:
+#
+#DEVELOPER                    DATE:         COMMNETS
+#Andres Ardila (student_id)   2021-03-01    add random ads
+#Andres Ardila (student_id)   2021-03-03    remove var_dump
+?>
+
 <?php require_once "includes/loader.php";?>
 <?php loadTopElements("HOME");
 $ads_array = array('ads_1.png','ads_2.png','ads_3.png');

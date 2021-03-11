@@ -26,17 +26,10 @@
 #Andres Ardila (student_id)   2021-02-24    added the functionality of clearing all the fields when 
 #                                           the form is filled correctly
 #Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
-?>
-
-<?php require_once "includes/loader.php";?>
-<?php 
+require_once "includes/loader.php";
 require_once "includes/validation.php";
 require_once 'includes/form.val.php';
 ?>
-
-
-
-
 
 <?php loadTopElements("HOME");?>
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->
@@ -51,8 +44,6 @@ require_once 'includes/form.val.php';
   <div class="advert" id="ads">adds</div>
 
   <div class="content">
-
-
 
     <form action="shop.php" method="post" class="form">
       <!-- ROW -->

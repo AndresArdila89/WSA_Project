@@ -1,4 +1,0 @@
-two mug sold 
-two mug sold 
-two mug sold 
- An error occured in the file /opt/lampp/htdocs/WSA/project_1931557/playground.phpat line 85 Division by zero

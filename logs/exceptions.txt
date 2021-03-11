@@ -1,0 +1,2 @@
+ An error occured in the file /opt/lampp/htdocs/WSA/project_1931557/playground.phpat line 86 Division by zero
+ An error occured in the file /opt/lampp/htdocs/WSA/project_1931557/playground.phpat line 86 Division by zero
