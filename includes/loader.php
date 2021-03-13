@@ -82,8 +82,9 @@ function loadOrders()
     $array_order_json = json_decode($myfile,true);
 
     ?>
-    <table>
+    <table class="table">
     <tr>
+    <th>#</th>
     <th>Product Code</th>
     <th>First Name</th>
     <th>Last Name</th>
@@ -95,12 +96,15 @@ function loadOrders()
     <th>Tax Amount</th>
     <th>Grand Total</th>
     </tr>
-    <?php 
+    <?php
+    // The counter keeps tract of the number of orders
+    $counter = 0;
         foreach($array_order_json as $value)
-        {
+        {$counter ++;
     ?>
 
     <tr>
+    <td><?php echo $counter; ?></td>
     <td><?php echo $value["productCode"]; ?></td>
     <td><?php echo $value["firstName"]; ?></td>
     <td><?php echo $value["lastName"]; ?></td>
@@ -121,33 +125,65 @@ function loadOrders()
 
 
 
-function changeSubTotalColor($value){
-    if($_GET['command'] == 'color')
+function changeSubTotalColor($value)
+{
+    if(isset($_GET['command']))
     {
-        if($value < 100){
-            echo "red-text";
-        }
-        elseif($value < 1000)
+        if($_GET['command'] == 'color')
         {
-            echo "lightOrange-text";
+            if($value < 100){
+                echo "red-text";
+            }
+            elseif($value < 1000)
+            {
+                echo "lightOrange-text";
+            }
+            else
+            {
+                echo "green-text";
+            }
+        } 
+    }   
+}
+
+function bgChange()
+{
+    if(isset($_GET['command'])){
+        if($_GET['command'] == 'print')
+        {
+            echo 'white';
         }
         else
         {
-            echo "green-text";
+            echo 'light';
         }
-    }    
+    }
 }
 
-function bgChange(){
-    if($_GET['command'] == 'print')
+function opacityChange()
+{
+    if(isset($_GET['command']))
     {
-        echo 'white';
+        if($_GET['command'] == 'print')
+        {
+            echo 'opacity';
+        }
     }
-    else
-    {
-        echo 'primary';
-    }
+}
 
+
+// validate if the string contains a numeric value
+function hasNumbers($str)
+{
+    for($i = 0; $i < mb_strlen($str); $i++)
+    {
+        $char = $str[$i];
+        if(is_numeric($char))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 ?>

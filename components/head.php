@@ -3,6 +3,14 @@
 #
 #DEVELOPER                    DATE:         COMMNETS
 #Andres Ardila (student_id)   2021-03-03    remove var_dump
+
+require_once "includes/errorExceptionHandle.php";
+  
+header('Expires: Thu, 01 Dec 1994 14:00:00 GMT');
+header('Cache-Control: no-cache');
+header('Pragma: no-cache');
+header('Content-Type: text/html; chaset=utf-8');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,5 +22,5 @@
 
     <title>Mug&Code: <?php echo $title; ?></title>
 </head>
-<body>
+<body class="<?php bgChange();?>">
     

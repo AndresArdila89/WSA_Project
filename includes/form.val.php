@@ -15,6 +15,7 @@ $errorComments = "";
 $errorTerms = "";
 $success = false;
 
+
 if(isset($_POST["Buy"]))
 {
   $productCode = htmlspecialchars(trim($_POST['product_code']));
@@ -133,6 +134,10 @@ if(isset($_POST["Buy"]))
           $errorPrice = "Input numbers only";
           $success = false;
         }
+        elseif($price > 10000){
+          $errorPrice = "Must not be greater than $10,000";
+          $success = false;
+        }
       }
 
       // Quantity validation
@@ -156,6 +161,11 @@ if(isset($_POST["Buy"]))
           if($dot) 
           {
             $errorQuantity = "Whole numbers only";
+            $success = false;
+          }
+          elseif($quantity > 99 || $quantity < 1)
+          {
+            $errorQuantity = "Quantity must be 1-99";
             $success = false;
           }
         }
@@ -188,6 +198,15 @@ if(isset($_POST["Buy"]))
         header("location: success.php");
         die();
       }
-
+}
+else
+{
+  $productCode = "";
+  $firstName = "";
+  $lastName = "";
+  $city = "";
+  $price = "";
+  $quantity = "";
+  $comments = "";
 }
 

@@ -1,5 +1,7 @@
 <?php
 // Global variable
+session_start();
+$_SESSION["software"] = "Ubuntu";
 $firstname = '';
 
 
@@ -7,7 +9,9 @@ function createCookie()
 {
     if(isset($_POST['firstname']))
     {
-        setcookie("firstname", htmlspecialchars($_POST["firstname"]),time() + 10, '',false, true);
+
+        // setcookie("firstname", htmlspecialchars($_POST["firstname"]),time() + 10, '',false, true);
+        $_SESSION["firstname"] = htmlspecialchars($_POST["firstname"]);
         header('Location: login.php');
         die();
     }
@@ -16,28 +20,36 @@ function createCookie()
 
 function deleteCookie()
 {
-    setcookie('firstname','',time() - 60 *60, '',false, true);
+    // setcookie('firstname','',time() - 60 *60, '',false, true);
+    session_destroy();
     header('Location: login.php');
-        die();
+    die();
 }
 
 function readCookie()
 {   global $firstname;
-    if(isset($_COOKIE['firstname'])){
-        $firstname = htmlspecialchars($_COOKIE['firstname']);
-        setcookie("firstname", htmlspecialchars($_COOKIE["firstname"]),time() + 10, '',false, true);
+    if(isset($_SESSION['firstname'])){
+        $firstname = htmlspecialchars($_SESSION['firstname']);
+        var_dump($_SESSION['firstname']);
     }
     else
     {
         $firstname = "";        
     }
+    // if(isset($_COOKIE['firstname'])){
+    //     $firstname = htmlspecialchars($_COOKIE['firstname']);
+    //     setcookie("firstname", htmlspecialchars($_COOKIE["firstname"]),time() + 10, '',false, true);
+    // }
+    // else
+    // {
+    //     $firstname = "";        
+    // }
 }
 
 
 if(isset($_POST["login"]))
     {
         createCookie();
-        
     }
     else
     {
@@ -74,9 +86,8 @@ if(isset($_POST["login"]))
         }
         
 
-if(isset($_COOKIE['firstname'])){
+if(isset($_SESSION['firstname']) && $_SESSION['firstname'] != ""){
 ?>
-
     <form action="login.php" method="POST">
         <input type="submit" name="logout" value="Logout">
     </form>

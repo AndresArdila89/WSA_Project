@@ -27,7 +27,6 @@
 #                                           the form is filled correctly
 #Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
 require_once "includes/loader.php";
-require_once "includes/validation.php";
 require_once 'includes/form.val.php';
 ?>
 
@@ -35,13 +34,21 @@ require_once 'includes/form.val.php';
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->
 
 <div class="app-layout">
-  <div class="banner"> 
-    <?php loadImage("banner.jpg",'image-full-width'); ?>
+  <div class="about">
+    <h1 class="primary-text">PLACE YOUR ORDER</h1>
   </div>
+  <div class="advert primary" id="ads">
+    <h2 class="lightOrange-text">Instructions</h2>
 
-  <h1 class="page_title">Homepage</h1>
-  
-  <div class="advert" id="ads">adds</div>
+    <ul class="green-text instructions">
+      <li>The product <b class='blue-text'>CODE</b> must begin with <b class='green-text'>P</b></li>
+      <li>The quantity <b class='blue-text'>MUST</b> to be an <b class='green-text'>INTEGER</b></li>
+      <li>All field are required except for the <b class='blue-text'>COMMENTS</b></li>
+      <li>The form accepts <b class='blue-text'>ACCENTS</b></li>
+      <li>You must <b class='blue-text'>AGREE</b> to continue</li>
+      <li>A new window will open once the <b class='blue-text'>ORDER</b> is <b class='green-text'>PLACED</b></li>
+    </ul>
+  </div>
 
   <div class="content">
 
@@ -50,7 +57,7 @@ require_once 'includes/form.val.php';
       <div class="form-section"> 
         <div class="form-element">
           <label for="product_code">Product Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
-          <input type="text" id="product_code" name="product_code" value=<?php echo $productCode;?>>
+          <input type="text" id="product_code" name="product_code" value=<?php  echo $productCode;?>>
         </div>
       </div>
 
@@ -100,12 +107,10 @@ require_once 'includes/form.val.php';
       <div class="form-section">
         <!-- COMMENTS -->
         <div class="form-element">
-          <input type="radio" id="agree" name="terms" value="agree">
-          <label for="agree">Agree</label>
-        </div>
-        <div class="form-element">
-          <input type="radio" id="disagree" name="terms" value="disagree">
-          <label for="disagree">Disagree</label>
+          <label for="disagree">
+            <input type="radio" id="agree" name="terms" value="agree">Agree
+            <input type="radio" id="disagree" name="terms" value="disagree">Disagree
+        </label>
         </div>
       </div>
 
@@ -118,7 +123,7 @@ require_once 'includes/form.val.php';
       </div>
     </form>
   </div>
-  <div class="wide-content">WIDE CONTENT</div>
+
 </div>
 
 <?php loadComponent("footer");?>

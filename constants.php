@@ -12,7 +12,6 @@ define("FILE_CSS_STYLE",FOLDER_CSS . "style.css");
 define("PAGE_HOME","index.php");
 define("PAGE_ORDERS","orders.php");
 define("PAGE_SHOP","shop.php");
-define("PAGE_PLAYGROUND","playground.php");
 define("PAGE_CHEAT_SHEET",FOLDER_DATA . "cheat_sheet.txt");
 
 // PHP FILES
@@ -26,7 +25,6 @@ define("FOLDER_IMAGES",'images/');
 define("NAV_TABS",array('HOME'=> PAGE_HOME,
                         'SHOP'=> PAGE_SHOP,
                         'ORDERS'=> PAGE_ORDERS,
-                        'PLAYGROUND'=> PAGE_PLAYGROUND,
                         'CHEAT SHEET'=> PAGE_CHEAT_SHEET
                         ));
 

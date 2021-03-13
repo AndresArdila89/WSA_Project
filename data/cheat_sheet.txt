@@ -1,1 +1,47 @@
 php cheat sheet 
+
+// DEFINE A CONSTANT
+define("FOLDER_COMPONENTS","components/");
+
+// PRINT A CONSTANT
+echo PAGE_SHOP;
+
+// CALL A FUNTION
+bgChange();
+
+//DECLARE A CONSTANT ARRAY
+define("NAV_TABS",array('HOME'=> PAGE_HOME,
+                        'SHOP'=> PAGE_SHOP,
+                        'ORDERS'=> PAGE_ORDERS,
+                        'PLAYGROUND'=> PAGE_PLAYGROUND,
+                        'CHEAT SHEET'=> PAGE_CHEAT_SHEET
+                        ));
+
+// HOW TO ADD A FILE ONLY ONCE 
+require_once "includes/loader.php";
+
+//DISPLAY DATE
+echo date("Y");
+
+//ERROR AND EXCEPTION HANDLERS
+set_error_handler("manageError");
+set_exception_handler("manageException");
+##the string passing inside the funtion is the name of the function that will display
+##all errors and exceptions.
+
+//how to verified if a global variable is set 
+isset($_POST["Buy"]) the funtion returns a boolean
+
+//filter any html injections from the POST variable it works with any type of variable
+htmlspecialchars(trim($_POST['product_code']));
+
+//GET THE LENG OF A STRING 
+strlen($productCode)
+
+
+//date time 
+(new DateTime())->format('H:m:s:u');
+
+
+//redirect to another page with header function
+header("location: success.php");

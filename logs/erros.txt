@@ -1,0 +1,17 @@
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 145:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 158:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 158:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/includes/loader.php at line 158:Error number 2: Undefined array key "command". 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/shop.php at line 61:Error number 2: Undefined variable $productCode. 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/shop.php at line 70:Error number 2: Undefined variable $firstName. 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/shop.php at line 70:Error number 2: Undefined variable $firstName. 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/shop.php at line 70:Error number 2: Undefined variable $firstName. 
+ :: An error ocoure in the file /opt/lampp/htdocs/WSA/project_1931557/shop.php at line 70:Error number 2: Undefined variable $firstName. 
