@@ -4,6 +4,7 @@
 #DEVELOPER                    DATE:         COMMNETS
 #Andres Ardila (student_id)   2021-02-28    created all the validations for the form 
 #Andres Ardila (student_id)   2021-03-10    created a function to load ordes from a json file
+#Andres Ardila (student_id)   2021-03-13    refactoring
 
 $errorProductCode = "";
 $errorFirstName ="";
@@ -13,7 +14,7 @@ $errorPrice = "";
 $errorQuantity = "";
 $errorComments = "";
 $errorTerms = "";
-$success = false;
+
 
 
 if(isset($_POST["Buy"]))
@@ -32,7 +33,6 @@ if(isset($_POST["Buy"]))
     $terms = '';
   }
   
-
      //Product Code
       $success = true;
       if($productCode == '')

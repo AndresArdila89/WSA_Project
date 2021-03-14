@@ -1,4 +1,12 @@
-<?php 
+<?php
+#Revision history:
+#
+#DEVELOPER                    DATE:         COMMNETS
+#Andres Ardila (student_id)   2021-03-13    
+#Andres Ardila (student_id)   2021-03-10    added loaderOrders function
+#Andres Ardila (student_id)   2021-03-10    
+
+
 require_once "constants.php";
 // This function loads the head file and recibes as a parameter
 // the title of the page, this value changes the name of the page tab.
@@ -24,7 +32,7 @@ function loadImage($imageName,$class='',$link=false){
 
     $image = FOLDER_IMAGES . $imageName;
     if($link){
-        echo "<a href='https://scrumfit.co/'><img src='$image' class='$class'/></a>";
+        echo "<a href='". URL_ADS . "'><img src='$image' class='$class'/></a>";
     }
     else
     {
@@ -109,12 +117,12 @@ function loadOrders()
     <td><?php echo $value["firstName"]; ?></td>
     <td><?php echo $value["lastName"]; ?></td>
     <td><?php echo $value["city"]; ?></td>
-    <td><?php echo $value["price"]. '$'; ?></td>
+    <td><?php echo number_format($value["price"],2). '$'; ?></td>
     <td><?php echo $value["quantity"]; ?></td>
     <td><?php echo $value["comments"]; ?></td>
-    <td class="<?php changeSubTotalColor($value["subTotal"]); ?>"><?php echo $value["subTotal"]. '$'; ?></td>
-    <td><?php echo $value["taxAmount"]. '$'; ?></td>
-    <td><?php echo $value["grandTotal"] . '$'; ?></td>
+    <td class="<?php changeSubTotalColor($value["subTotal"]); ?>"><?php echo number_format($value["subTotal"],2). '$'; ?></td>
+    <td><?php echo number_format($value["taxAmount"],2). '$'; ?></td>
+    <td><?php echo number_format($value["grandTotal"],2) . '$'; ?></td>
     </tr>
     <?php 
         }

@@ -22,6 +22,7 @@ require_once "includes/loader.php";
 
 //DISPLAY DATE
 echo date("Y");
+$date = (new DateTime())->format('H:m:s:u');
 
 //ERROR AND EXCEPTION HANDLERS
 set_error_handler("manageError");
@@ -45,3 +46,12 @@ strlen($productCode)
 
 //redirect to another page with header function
 header("location: success.php");
+
+//SESSION global
+session_start();
+$_SESSION["firstname"]
+
+
+//CASTING 
+(int)$x;
+(float)$x;

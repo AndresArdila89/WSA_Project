@@ -3,14 +3,12 @@
 #
 #DEVELOPER                    DATE:         COMMNETS
 #Andres Ardila (student_id)   2021-03-03    remove var_dump
-
+#Andres Ardila (student_id)   2021-03-12    headers added
 require_once "includes/errorExceptionHandle.php";
-  
 header('Expires: Thu, 01 Dec 1994 14:00:00 GMT');
 header('Cache-Control: no-cache');
 header('Pragma: no-cache');
 header('Content-Type: text/html; chaset=utf-8');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

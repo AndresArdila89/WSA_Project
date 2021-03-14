@@ -3,8 +3,8 @@
 #
 #DEVELOPER                    DATE:         COMMNETS
 #Andres Ardila (student_id)   2021-03-03    background change deepending on the GET['command]
-#Andres Ardila (student_id)   2021-03-04    added the loadOrders function 
-#Andres Ardila (student_id)   2021-03-04    added all orders title
+#Andres Ardila (student_id)   2021-03-06    added the loadOrders function 
+#Andres Ardila (student_id)   2021-03-06    added all orders title
 require_once "includes/loader.php";
 loadTopElements("ABOUT");
 ?>
@@ -19,9 +19,7 @@ loadTopElements("ABOUT");
    
     </div>
     <div class="about"> <?php loadOrders();?> </div>
-
     
-
 </div>
 
 <?php loadComponent("footer");?>

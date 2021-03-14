@@ -1,3 +1,22 @@
+/*
+
+#Revision history:
+#
+#DEVELOPER                    DATE:         COMMNETS
+#Andres Ardila (student_id)   2021-02-20    create collor varibles
+#Andres Ardila (student_id)   2021-02-21    Implement font face to use the roboto font  
+#Andres Ardila (student_id)   2021-02-23    created the grid system
+#Andres Ardila (student_id)   2021-02-23    add top bar style
+#Andres Ardila (student_id)   2021-03-23    add navigation bar style
+#Andres Ardila (student_id)   2021-03-01   add media queries
+#Andres Ardila (student_id)   2021-03-01  style buttons
+#Andres Ardila (student_id)   2021-03-04    style order table 
+#Andres Ardila (student_id)   2021-03-04    style links 
+
+*/
+
+
+
 :root{
     --dark: rgb(31, 31, 31);
     --light: rgb(228, 228, 228);
@@ -77,6 +96,9 @@ body {
     font-family: "roboto";
     font-weight: normal;
 
+}
+a {
+    text-decoration: none;
 }
 
 .image-full-width{
@@ -177,6 +199,11 @@ body {
     grid-row: content-row 1 / span content-row 2;
    
 
+}
+.content p {
+    margin: 40px;
+    text-align: justify;
+    font-size: 16px;
 }
 
 .wide-content {
