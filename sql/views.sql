@@ -1,3 +1,10 @@
+-------------------- ALL VIEWS --------------------
+-- REVISION HISTORY:
+-- DEVELOPER		DATE		COMMENTS
+-- Andres Ardila	2021-04-07	view all purchases info created
+
+-- view all purchases
+
 SELECT 	purchases.purchase_id AS Id,
 	purchases.quantity AS Quantity,
 	purchases.comments AS Comments,	
@@ -21,4 +28,6 @@ SELECT 	purchases.purchase_id AS Id,
 	customers.modification_date AS 'Customer Modification Date'
 FROM 	purchases
 	INNER JOIN products ON purchases.product_id = products.product_id
-	INNER JOIN customers ON purchases.customer_id = customers.customer_id;
+	INNER JOIN customers ON purchases.customer_id = customers.customer_id
+ORDER BY 'Creation Date';
+
