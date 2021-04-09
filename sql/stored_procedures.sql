@@ -6,7 +6,7 @@
 -- Andres Ardila	2021-04-07	select one row procedure created
 -- Andres Ardila	2021-04-07	insert customer procedure created
 -- Andres Ardila	2021-04-07	update customer procedure created	
--- Andres Ardila	2021-04-07	update,delete,insert,select purchases		
+-- Andres Ardila	2021-04-07	update,delete,insert,select purchases	-- Andres Ardila	2021-04-08	update,delete,insert,select products		
 
 -- TABLE CUSTOMERS
 
@@ -21,7 +21,8 @@ SELECT 	customer_id,
 	pwd,
 	creation_date,
 	modification_date
-FROM 	customers;
+FROM 	customers
+ORDER BY creation_date ASC;
 
 -- Select one row
  
@@ -47,8 +48,6 @@ INSERT INTO customers (
 	postal_code,
 	user_name,
 	pwd,
-	creation_date,
-	modification_date
 	)
 VALUES 	(
 	p_firstname,
@@ -106,7 +105,7 @@ SELECT 	purchase_id,
 	creation_date,
 	modification_date
 FROM 	purchases	
-WHERE	purchases.purchase_id = p_purchase_id;
+WHERE	purchase_id = p_purchase_id;
 -- Insert 
 
 INSERT INTO purchases (
@@ -139,3 +138,107 @@ WHERE 	purchase_id = p_purchase_id;
 
 DELETE FROM purchases
 WHERE	purchase_id = p_purchase_id;
+
+
+
+-- TABLE PRODUCTS 
+-- Select all rows
+
+SELECT 	product_id,
+	product_code,
+	description,
+	price,
+	cost,
+	creation_date,
+	modification_date	
+FROM 	products;
+	
+
+
+-- Select one row
+
+SELECT 	product_id,
+	product_code,
+	description,
+	price,
+	cost,
+	creation_date,
+	modification_date	
+FROM 	products
+	
+WHERE	product_id = p_product_id;
+
+-- Insert 
+
+INSERT INTO products (
+	product_code,
+	description,
+	price,
+	cost	
+	)
+VALUES 	(
+	p_product_code,
+	p_description,
+	p_price,
+	p_cost,
+	);	
+
+-- Update 
+
+UPDATE  products	
+SET	product_code = p_product_code,
+	description = p_description,
+	price = p_price,
+	cost = p_cost
+
+WHERE 	product_id = p_product_id,
+
+-- Delete 
+DELETE FROM products 
+WHERE	product_id = p_product_id;
+
+
+-- GET THE PASSWORD FOR A GIVEN USERNAME
+
+SELECT pwd
+FROM customers
+WHERE user_name = p_user_name;
+
+-- FILTER PURCHASES by customer
+
+SELECT 	purchases.purchase_id,
+	products.product_code, 
+	customers.firstname,
+	customers.lastname,
+	customers.city,
+	purchases.comments,
+	purchases.product_price,
+	purchases.quantity,
+	purchases.subtotal,
+	purchases.taxes,
+	purchases.grand_total
+FROM	purchases
+	INNER JOIN products ON purchases.product_id = products.product_id
+	INNER JOIN customers ON purchases.customer_id = customers.customer_id
+WHERE	purchases.customer_id = p_customer_id
+ORDER BY purchases.creation_date;
+
+
+--FILTER PURCHASES by date
+
+
+SELECT 	purchases.purchase_id,
+	products.product_code, 
+	customers.firstname,
+	customers.lastname,
+	customers.city,
+	purchases.comments,
+	purchases.product_price,
+	purchases.quantity,
+	purchases.creation_date,
+	purchases.modification_date
+FROM	purchases
+	INNER JOIN products ON purchases.product_id = products.product_id
+	INNER JOIN customers ON purchases.customer_id = customers.customer_id
+WHERE	purchases.creation_date = p_creation_date
+ORDER BY purchases.creation_date;

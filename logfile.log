@@ -1,0 +1,210 @@
+commit d31a900cc46cefb02c72b8061be11dc22e3df712
+Author:     Andres Ardila <andresardila@me.com>
+AuthorDate: Wed Mar 31 21:40:17 2021 -0400
+Commit:     Andres Ardila <andresardila@me.com>
+CommitDate: Wed Mar 31 21:40:17 2021 -0400
+
+    DATA BASE CREATION 3 TABLES
+    -Customers
+    -Products
+    -Purchases
+    All the tables have primary keys, foreing keys.
+
+ 1 file changed, 80 insertions(+)
+
+commit 5a3b98dabba0d6d2ce07a8b7029d905ee0cd655c
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Sat Mar 13 23:57:13 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Sat Mar 13 23:57:13 2021 -0500
+
+    FINAL COMMIT
+    -The entired website is running
+    -All requirements are finish
+    -Images and styling will be perform for the next part of the project
+    -readme file added to facilitate the workflow of the website
+
+ 5 files changed, 297 deletions(-)
+
+commit a837bed3989735f13869c98891980ce051a62e7d
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Sat Mar 13 23:54:53 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Sat Mar 13 23:54:53 2021 -0500
+
+    last revision
+
+ 14 files changed, 152 insertions(+), 43 deletions(-)
+
+commit 0f0e70e5b881f5203601d8dc77359840995214b2
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Fri Mar 12 23:42:58 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Fri Mar 12 23:42:58 2021 -0500
+
+    refactoring and styling
+
+ 36 files changed, 645 insertions(+), 140 deletions(-)
+
+commit d3f88755f26d8d84e614dca85e8e818e3df10fc2
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Wed Mar 10 23:27:25 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Wed Mar 10 23:27:25 2021 -0500
+
+    orders page requirements completed
+
+ 25 files changed, 404 insertions(+), 96 deletions(-)
+
+commit a80dd7cec75895a6ce55ae93e81835ba50638d2e
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Wed Mar 3 21:04:43 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Wed Mar 3 21:04:43 2021 -0500
+
+    ADDED ERROR AND EXCEPTION HANDLE
+    -small modifications on the css
+    -logs folder created
+
+ 20 files changed, 432 insertions(+), 230 deletions(-)
+
+commit d91e0acb846c7ee61337e9648daa415c367a3cab
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Tue Feb 23 22:15:05 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Tue Feb 23 22:15:05 2021 -0500
+
+    FORM VALIDATION
+    - create a file for validation functions
+    - code a function that allows to find if the string contains numbers
+    - validate first name, last name, city, price and quantity fields
+    - add some comments to the style.css file
+    - remove comments from the head.php file
+
+ 4 files changed, 153 insertions(+), 42 deletions(-)
+
+commit 46e6fc8ae764e6a59245646a6f11a482e83f60eb
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Mon Feb 22 11:38:28 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Mon Feb 22 11:38:28 2021 -0500
+
+    css comments added
+
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+commit 353f5787cf0357d5b6864866fd51130cf373d393
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Mon Feb 22 11:32:37 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Mon Feb 22 11:32:37 2021 -0500
+
+    BUYING PAGE FORM
+    -form added to the buying page
+    -the form uses flex to arrange all the fields
+    -this are the classes created for the form:
+    -- class: form
+    -- class: form-section
+    -- class: form-element
+    this classes help to organize the elements inside the form.
+
+ 2 files changed, 125 insertions(+), 15 deletions(-)
+
+commit d858d4b4258b1ae3fb78100c746344baa21fdb12
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Sun Feb 21 21:49:16 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Sun Feb 21 21:49:16 2021 -0500
+
+    HOME PAGE: FINISH
+    All the requirements completed
+    -- Logo added in the top left corner
+    -- Dynamic navigation bar
+    -- Advertisement added with 5 pics
+       -Red border 5px and 100% size
+       -Random image everytime the page loads
+       -Click link on every ads redirecting to other page
+
+ 15 files changed, 90 insertions(+), 148 deletions(-)
+
+commit 32cf7e39d0620e7461fa575d4f7b48dff64dd2eb
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Fri Feb 19 18:48:35 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Fri Feb 19 18:48:35 2021 -0500
+
+    commends added to the loader.php file
+
+ 3 files changed, 21 insertions(+), 18 deletions(-)
+
+commit 984c3babfe1fdee2dfa5f76bc50f0adc0c746c0d
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Fri Feb 19 18:28:49 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Fri Feb 19 18:28:49 2021 -0500
+
+    added dinamic title to the tabs - set title to the banner - tested navigation thru the pages
+
+ 6 files changed, 126 insertions(+), 30 deletions(-)
+
+commit 53045a9ca5470b47efcdd83f8c3393d5f1db3d35
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Fri Feb 19 15:07:38 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Fri Feb 19 15:07:38 2021 -0500
+
+    loader file removed
+
+ 1 file changed, 9 deletions(-)
+
+commit 59b85ea4b7c39a76c5db39e14a1ae06d32474ed0
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Fri Feb 19 15:06:19 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Fri Feb 19 15:06:19 2021 -0500
+
+    how to use forms - creating the links for the shop and about page - declaring the constants for the paths - adding the ads section as well
+
+ 16 files changed, 220 insertions(+), 10 deletions(-)
+
+commit 4796809d0ea373a43bc3b12891e5f934a3e14ba9
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Tue Feb 16 22:13:52 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Tue Feb 16 22:13:52 2021 -0500
+
+    added banner
+    - adding product area
+    - Implementing flex inside a grid system
+
+ 6 files changed, 119 insertions(+), 26 deletions(-)
+
+commit d268ef4f706f91d45ba3c3c66226e72d34d6ec17
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Fri Feb 12 17:27:00 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Fri Feb 12 17:27:00 2021 -0500
+
+    landing page resposive design
+
+ 6 files changed, 52 insertions(+), 16 deletions(-)
+
+commit 2c8742e8a53831cde46d04b8a189365206e3c6d5
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Mon Feb 8 11:06:45 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Mon Feb 8 11:06:45 2021 -0500
+
+    adding the loader funtion
+
+ 2 files changed, 15 insertions(+), 2 deletions(-)
+
+commit b56ea6ed3f0c780d7f6c1509d59b6bcc488c2315
+Author:     AndresArdila89 <andresardila@me.com>
+AuthorDate: Mon Feb 8 10:20:23 2021 -0500
+Commit:     AndresArdila89 <andresardila@me.com>
+CommitDate: Mon Feb 8 10:20:23 2021 -0500
+
+    First commit
+
+ 5 files changed, 200 insertions(+)
