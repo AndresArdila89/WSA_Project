@@ -31,5 +31,5 @@ SELECT 	purchases.purchase_id AS Id,
 FROM 	purchases
 	INNER JOIN products ON purchases.product_id = products.product_id
 	INNER JOIN customers ON purchases.customer_id = customers.customer_id
-ORDER BY 'Creation Date';
+ORDER BY purchases.creation_date ASC;
 

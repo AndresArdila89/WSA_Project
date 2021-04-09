@@ -20,21 +20,21 @@ USE `database_1931557`;
 -- Dumping structure for table database_1931557.customers
 CREATE TABLE IF NOT EXISTS `customers` (
   `customer_id` char(36) NOT NULL DEFAULT uuid(),
-  `firstname` varchar(20) DEFAULT NULL,
-  `lastname` varchar(20) DEFAULT NULL,
-  `customer_address` varchar(25) DEFAULT NULL,
-  `city` varchar(25) DEFAULT NULL,
-  `province` varchar(25) DEFAULT NULL,
-  `postal_code` char(7) DEFAULT NULL,
-  `user_name` varchar(12) DEFAULT NULL,
-  `pwd` char(255) DEFAULT NULL,
+  `firstname` varchar(20) NOT NULL,
+  `lastname` varchar(20) NOT NULL,
+  `customer_address` varchar(25) NOT NULL,
+  `city` varchar(25) NOT NULL,
+  `province` varchar(25) NOT NULL,
+  `postal_code` char(7) NOT NULL,
+  `user_name` varchar(12) NOT NULL,
+  `pwd` char(255) NOT NULL,
   `creation_date` datetime DEFAULT current_timestamp(),
   `modification_date` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='#Revision history\r\n#DEVELOPER           DATE                    COMMENTS\r\n#andres ardila         2021-03-30          project init\r\n#andres ardila         2021-03-30          customer table created\r\n#andres aridla         2021-04-07          password column name changed to pwd \r\nfirstname, lastname (20 chart long)\r\naddress\r\ncity (8 min)\r\nprovince (max 25 char)\r\npostal code (7 char)\r\nusername (must be unique)(max 12 char)\r\npassword (max 255 characters)';
 
--- Dumping data for table database_1931557.customers: ~0 rows (approximately)
+-- Dumping data for table database_1931557.customers: ~2 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
 INSERT INTO `customers` (`customer_id`, `firstname`, `lastname`, `customer_address`, `city`, `province`, `postal_code`, `user_name`, `pwd`, `creation_date`, `modification_date`) VALUES
 	('1a7cef61-9247-11eb-b238-0800272e460d', 'Cate', 'Ospina', '1007 Rue Bellevue', 'montreal', 'quebec', '232323', 'cospina', '123', '2021-04-07 13:35:24', '2021-04-07 15:16:03'),
@@ -48,6 +48,10 @@ CREATE PROCEDURE `customers_delete`(
 	IN `p_customer_id` CHAR(36)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-06	procedure created
+
 -- delete one  by id
 DELETE FROM customers
 WHERE	customers.user_name = p_user_name OR customers.customer_id= p_customer_id;
@@ -57,9 +61,15 @@ DELIMITER ;
 
 -- Dumping structure for procedure database_1931557.customers_get_password
 DELIMITER //
-CREATE PROCEDURE `customers_get_password`()
+CREATE PROCEDURE `customers_get_password`(
+	IN `p_user_name` VARCHAR(12)
+)
 BEGIN
--- ACCEPTS THE USERNAME AND RETURNS THE PASSWORD IF THERE IS A MATCH
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-06	procedure created
+
+# ACCEPTS THE USERNAME AND RETURNS THE PASSWORD IF THERE IS A MATCH
 
 SELECT pwd
 FROM customers
@@ -81,6 +91,10 @@ CREATE PROCEDURE `customers_insert`(
 	IN `p_province` VARCHAR(25)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-06	procedure created
+
 -- insert a new customer
 INSERT INTO customers (
 	firstname,
@@ -111,6 +125,10 @@ CREATE PROCEDURE `customers_select`(
 	IN `p_user_name` VARCHAR(12)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-06	procedure created
+
 -- select one row by id
 
 SELECT 	customer_id,
@@ -132,6 +150,10 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `customers_select_all`()
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-06	procedure created
+
 -- Selects all rows from the table customers
 
 SELECT 	customer_id,
@@ -164,6 +186,10 @@ CREATE PROCEDURE `customer_update`(
 	IN `p_pwd` CHAR(255)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-06	procedure created
+
 -- update customer
 
 UPDATE customers
@@ -182,7 +208,7 @@ DELIMITER ;
 -- Dumping structure for table database_1931557.products
 CREATE TABLE IF NOT EXISTS `products` (
   `product_id` char(36) NOT NULL DEFAULT uuid(),
-  `product_code` varchar(12) DEFAULT NULL,
+  `product_code` varchar(12) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `price` decimal(7,2) DEFAULT NULL,
   `cost` decimal(7,2) DEFAULT NULL,
@@ -191,10 +217,10 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='#Revision history\r\n#DEVELOPER           DATE                    COMMENTS\r\n#andres ardila         2021-03-31          product table created\r\n\r\nproduct code: (max 12)\r\ndescription: (max 100)\r\nprice: (2 decimals, max 10000$)\r\ncost:(2 decimals, optional)';
 
--- Dumping data for table database_1931557.products: ~0 rows (approximately)
+-- Dumping data for table database_1931557.products: ~1 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`product_id`, `product_code`, `description`, `price`, `cost`, `creation_date`, `modification_date`) VALUES
-	('1c201c9f-9204-11eb-b238-0800272e460d', 'P123', 'This is a test product', 99.99, 12.99, '2021-03-31 22:16:02', '2021-03-31 22:16:02');
+	('1c201c9f-9204-11eb-b238-0800272e460d', 'P2323', 'This is the updated product', 100.00, 50.00, '2021-03-31 22:16:02', '2021-04-09 09:39:22');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for procedure database_1931557.products_delete
@@ -203,6 +229,10 @@ CREATE PROCEDURE `products_delete`(
 	IN `p_product_id` CHAR(36)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- delete one product by id
 DELETE FROM products 
 WHERE	product_id = p_product_id;
@@ -218,6 +248,10 @@ CREATE PROCEDURE `products_insert`(
 	IN `p_cost` DECIMAL(7,2)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- insert a new product
 INSERT INTO products (
 	product_code,
@@ -240,6 +274,10 @@ CREATE PROCEDURE `products_select`(
 	IN `p_product_id` CHAR(36)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- select one row by id
 
 SELECT 	product_id,
@@ -261,6 +299,10 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `products_select_all`()
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- Selects all rows from the table products
 
 SELECT 	product_id,
@@ -287,6 +329,10 @@ CREATE PROCEDURE `products_update`(
 	IN `p_cost` DECIMAL(7,2)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- update product
 
 UPDATE  products	
@@ -302,9 +348,9 @@ DELIMITER ;
 -- Dumping structure for table database_1931557.purchases
 CREATE TABLE IF NOT EXISTS `purchases` (
   `purchase_id` char(36) NOT NULL DEFAULT uuid(),
-  `customer_id` char(36) DEFAULT NULL,
-  `product_id` char(36) DEFAULT NULL,
-  `quantity` smallint(5) unsigned DEFAULT NULL,
+  `customer_id` char(36) NOT NULL,
+  `product_id` char(36) NOT NULL,
+  `quantity` smallint(5) unsigned NOT NULL,
   `product_price` decimal(7,2) unsigned DEFAULT NULL,
   `comments` varchar(200) DEFAULT NULL,
   `creation_date` datetime DEFAULT current_timestamp(),
@@ -316,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `purchases` (
   CONSTRAINT `FK_purchases_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='#Revision history\r\n#DEVELOPER           DATE                    COMMENTS\r\n#andres ardila         2021-03-31         purchases table created\r\n#andres ardila         2021-03-31         primary key and foreign keys implemented\r\n#andres ardila         2021-04-07         change column name from comment to comments, "COMMENT" is a keyword. \r\n\r\n--------details----------\r\nforeign key of customers\r\nforeign key of products\r\nquantity sold (max 999)\r\nproduct price (if price change older orders should not be affected)\r\ncomments (max 200, optional)\r\ncreated_date\r\nmodify date';
 
--- Dumping data for table database_1931557.purchases: ~2 rows (approximately)
+-- Dumping data for table database_1931557.purchases: ~3 rows (approximately)
 /*!40000 ALTER TABLE `purchases` DISABLE KEYS */;
 INSERT INTO `purchases` (`purchase_id`, `customer_id`, `product_id`, `quantity`, `product_price`, `comments`, `creation_date`, `modification_date`) VALUES
 	('7aae0557-97fc-11eb-9906-0800272e460d', '1a7cef61-9247-11eb-b238-0800272e460d', '1c201c9f-9204-11eb-b238-0800272e460d', 3, 34.99, 'This is a purchase from the stored procedure', '2021-04-07 23:06:28', '2021-04-07 23:06:28'),
@@ -330,6 +376,10 @@ CREATE PROCEDURE `purchases_delete`(
 	IN `p_purchase_id` CHAR(36)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- delete one purchase by id
 
 DELETE FROM purchases
@@ -344,9 +394,11 @@ CREATE PROCEDURE `purchases_filter_by_customer`(
 	IN `p_customer_id` CHAR(36)
 )
 BEGIN
--- filter all purchases by customer id and sort by creation date
--- 
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
 
+-- filter all purchases by customer id and sort by creation date
 SELECT 	purchases.purchase_id,
 			products.product_code, 
 			customers.firstname,
@@ -371,6 +423,12 @@ CREATE PROCEDURE `purchases_filter_by_date`(
 	IN `p_creation_date` VARCHAR(50)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
+-- filter purchases by date if no date is input by the user all purchases would be shown
+
 SELECT 	purchases.purchase_id,
 	products.product_code, 
 	customers.firstname,
@@ -399,6 +457,10 @@ CREATE PROCEDURE `purchases_insert`(
 	IN `p_comments` VARCHAR(200)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- insert a new purchase
 
 INSERT INTO purchases (
@@ -425,6 +487,10 @@ CREATE PROCEDURE `purchases_select`(
 	IN `p_purchase_id` CHAR(36)
 )
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- select one row by id
 
 SELECT 	purchase_id,
@@ -444,6 +510,10 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `purchases_select_all`()
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- Selects all rows from the table purchases
 
 SELECT 	purchase_id,
@@ -465,6 +535,10 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE `purchases_update`()
 BEGIN
+# Revision history:
+#DEVELOPER			DATE			COMMENTS
+#Andres Ardila		2021-04-07	procedure created
+
 -- update purchase
 
 UPDATE 	purchases
@@ -482,26 +556,26 @@ DELIMITER ;
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `purchases_view_all` (
 	`Id` CHAR(36) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`Quantity` SMALLINT(5) UNSIGNED NULL,
+	`Quantity` SMALLINT(5) UNSIGNED NOT NULL,
 	`Comments` VARCHAR(200) NULL COLLATE 'utf8mb4_general_ci',
 	`Price` DECIMAL(7,2) UNSIGNED NULL,
 	`Creation Date` DATETIME NULL,
 	`Modification Date` DATETIME NULL,
 	`Product FK` CHAR(36) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`Product Code` VARCHAR(12) NULL COLLATE 'utf8mb4_general_ci',
+	`Product Code` VARCHAR(12) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`Description` VARCHAR(100) NULL COLLATE 'utf8mb4_general_ci',
 	`Cost` DECIMAL(7,2) NULL,
 	`Product Creation Date` DATETIME NULL,
 	`Product Modification Date` DATETIME NULL,
 	`Customer FK` CHAR(36) NOT NULL COLLATE 'utf8mb4_general_ci',
-	`First Name` VARCHAR(20) NULL COLLATE 'utf8mb4_general_ci',
-	`Last Name` VARCHAR(20) NULL COLLATE 'utf8mb4_general_ci',
-	`Customer Address` VARCHAR(25) NULL COLLATE 'utf8mb4_general_ci',
-	`City` VARCHAR(25) NULL COLLATE 'utf8mb4_general_ci',
-	`Province` VARCHAR(25) NULL COLLATE 'utf8mb4_general_ci',
-	`Postal Code` CHAR(7) NULL COLLATE 'utf8mb4_general_ci',
-	`Username` VARCHAR(12) NULL COLLATE 'utf8mb4_general_ci',
-	`Password` CHAR(255) NULL COLLATE 'utf8mb4_general_ci',
+	`First Name` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Last Name` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Customer Address` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`City` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Province` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Postal Code` CHAR(7) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Username` VARCHAR(12) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Password` CHAR(255) NOT NULL COLLATE 'utf8mb4_general_ci',
 	`Customer Creation Date` DATETIME NULL,
 	`Customer Modification Date` DATETIME NULL
 ) ENGINE=MyISAM;
@@ -509,7 +583,7 @@ CREATE TABLE `purchases_view_all` (
 -- Dumping structure for view database_1931557.purchases_view_all
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `purchases_view_all`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `purchases_view_all` AS select `purchases`.`purchase_id` AS `Id`,`purchases`.`quantity` AS `Quantity`,`purchases`.`comments` AS `Comments`,`purchases`.`product_price` AS `Price`,`purchases`.`creation_date` AS `Creation Date`,`purchases`.`modification_date` AS `Modification Date`,`products`.`product_id` AS `Product FK`,`products`.`product_code` AS `Product Code`,`products`.`description` AS `Description`,`products`.`cost` AS `Cost`,`products`.`creation_date` AS `Product Creation Date`,`products`.`modification_date` AS `Product Modification Date`,`customers`.`customer_id` AS `Customer FK`,`customers`.`firstname` AS `First Name`,`customers`.`lastname` AS `Last Name`,`customers`.`customer_address` AS `Customer Address`,`customers`.`city` AS `City`,`customers`.`province` AS `Province`,`customers`.`postal_code` AS `Postal Code`,`customers`.`user_name` AS `Username`,`customers`.`pwd` AS `Password`,`customers`.`creation_date` AS `Customer Creation Date`,`customers`.`modification_date` AS `Customer Modification Date` from ((`purchases` join `products` on(`purchases`.`product_id` = `products`.`product_id`)) join `customers` on(`purchases`.`customer_id` = `customers`.`customer_id`)) order by 'Creation Date';
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `purchases_view_all` AS select `purchases`.`purchase_id` AS `Id`,`purchases`.`quantity` AS `Quantity`,`purchases`.`comments` AS `Comments`,`purchases`.`product_price` AS `Price`,`purchases`.`creation_date` AS `Creation Date`,`purchases`.`modification_date` AS `Modification Date`,`products`.`product_id` AS `Product FK`,`products`.`product_code` AS `Product Code`,`products`.`description` AS `Description`,`products`.`cost` AS `Cost`,`products`.`creation_date` AS `Product Creation Date`,`products`.`modification_date` AS `Product Modification Date`,`customers`.`customer_id` AS `Customer FK`,`customers`.`firstname` AS `First Name`,`customers`.`lastname` AS `Last Name`,`customers`.`customer_address` AS `Customer Address`,`customers`.`city` AS `City`,`customers`.`province` AS `Province`,`customers`.`postal_code` AS `Postal Code`,`customers`.`user_name` AS `Username`,`customers`.`pwd` AS `Password`,`customers`.`creation_date` AS `Customer Creation Date`,`customers`.`modification_date` AS `Customer Modification Date` from ((`purchases` join `products` on(`purchases`.`product_id` = `products`.`product_id`)) join `customers` on(`purchases`.`customer_id` = `customers`.`customer_id`)) order by `purchases`.`creation_date`;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

@@ -240,5 +240,5 @@ SELECT 	purchases.purchase_id,
 FROM	purchases
 	INNER JOIN products ON purchases.product_id = products.product_id
 	INNER JOIN customers ON purchases.customer_id = customers.customer_id
-WHERE	purchases.creation_date = p_creation_date
+WHERE	(purchases.creation_date >= p_creation_date OR p_creation_date IS NULL) 
 ORDER BY purchases.creation_date;
