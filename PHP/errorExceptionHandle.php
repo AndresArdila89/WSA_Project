@@ -5,7 +5,7 @@
 #       logical error: 
 
     
-$debug = true;
+$debug = false;
     function manageError($Number, $Message, $File, $Line){
         global $debug;
         
@@ -51,7 +51,6 @@ set_error_handler("manageError");
 set_exception_handler("manageException");   
     
     
-
 #   error: a problem occured when calling PHP functions
 #   exceptions: a problem occured when running error PHP functions
 ?>
