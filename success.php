@@ -1,5 +1,6 @@
 <?php 
-require_once "includes/loader.php";
+
+require_once "PHP/loader.php";
 
 loadTopElements("ABOUT");
 ?>

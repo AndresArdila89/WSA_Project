@@ -16,8 +16,10 @@ define("PAGE_CHEAT_SHEET",FOLDER_DATA . "cheat_sheet.txt");
 define("URL_ADS", "https://github.com/AndresArdila89");
 
 // PHP FILES
-define("FOLDER_INCLUDES","includes/");
-define("FILE_LOADER", FOLDER_INCLUDES . "loader.php");
+define("FOLDER_INCLUDES","PHP/");
+define("FILE_LOADER", FOLDER_INCLUDES . "loader.php"); 
+define("ERROR_HANDLER", FOLDER_INCLUDES . "errorExceptionHandle.php" );
+define("FORM_VALIDATION", FOLDER_INCLUDES . "form.val.php");
 
 // IMAGES
 define("FOLDER_IMAGES",'images/');

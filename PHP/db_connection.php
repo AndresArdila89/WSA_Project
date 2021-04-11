@@ -1,0 +1,37 @@
+<?php
+#REVISION HISTORY:
+#DEVELOPER          DATE            COMMENTS
+#Andres Ardila      2021-04-10      db_connection.php file created
+#Andres Ardila      2021-04-10      create DBConnect class
+#Andres Ardila      2021-04-10      added try and catch to find errors in the connection
+
+echo "DBConnection class loaded";
+class DBConnection{
+
+    private $servername;
+    private $username;
+    private $password;
+    private $dbname;
+    private $charset;
+
+    #PDO constructor receives string:dsn,username,password and  array:options
+    #dsn = Data Source Name information require to connect to the database
+
+    public function connect(){
+        $this->servername = "localhost";
+        $this->username = "user-1931557";
+        $this->password = "123";
+        $this->dbname = "database_1931557";
+        $this->charset = "utf8mb4";
+
+        try {
+            $dsn = "mysql:host=" . $this->servername .";dbname=" . $this->dbname . ";charset=" . $this->charset;
+            $pdo = new PDO($dsn, $this->username, $this->password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        } catch (PDOException $e) {
+            echo "Connection error: " . $e->getMessage();
+        }
+    }
+}
+?>

@@ -55,3 +55,12 @@ $_SESSION["firstname"]
 //CASTING 
 (int)$x;
 (float)$x;
+
+---------------------------
+DATABASE SQL
+---------------------------
+SELECT  column_name 
+FROM    table_name
+WHERE   condition
+ORDER BY column_name ASC|DES
+

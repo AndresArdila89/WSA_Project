@@ -1,0 +1,8 @@
+protect the website against SQL HTML and JavaScript injections
+
+-Create only connection string file.
+-The website need to connect with user-1931557 only
+-use a certificate and private key to encrypt the network communications.
+-Force the website to use the HTTPS port.
+
+

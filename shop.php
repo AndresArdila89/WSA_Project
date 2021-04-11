@@ -26,11 +26,13 @@
 #Andres Ardila (student_id)   2021-02-24    added the functionality of clearing all the fields when 
 #                                           the form is filled correctly
 #Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
-require_once "includes/loader.php";
-require_once 'includes/form.val.php';
+#Andres Ardila (student_id)   2021-04-09    fix comments box from clearing after validation error
+
+require_once "PHP/loader.php";
+require_once  FORM_VALIDATION;
+loadTopElements("HOME");
 ?>
 
-<?php loadTopElements("HOME");?>
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->
 
 <div class="app-layout">
@@ -57,7 +59,7 @@ require_once 'includes/form.val.php';
       <div class="form-section"> 
         <div class="form-element">
           <label for="product_code">Product Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
-          <input type="text" id="product_code" name="product_code" value=<?php  echo $productCode;?>>
+          <input type="text" id="product_code" name="product_code" value='<?php  echo $productCode;?>'>
         </div>
       </div>
 
@@ -66,12 +68,12 @@ require_once 'includes/form.val.php';
         <!-- FIRST NAME-->
         <div class="form-element">
           <label for="first_name">First Name: <span class="form-error"><?php echo $errorFirstName; ?></span></label>
-          <input type="text" id="first_name" name="first_name" value=<?php echo $firstName;?> >
+          <input type="text" id="first_name" name="first_name" value='<?php echo $firstName;?>'>
         </div>
         <!-- LAST NAME -->
         <div class="form-element">
           <label for="last_name">Last Name: <span class="form-error"><?php echo $errorLastName; ?></span></label>
-          <input type="text" id="last_name" name="last_name" value=<?php echo $lastName;?>>
+          <input type="text" id="last_name" name="last_name" value='<?php echo $lastName;?>'>
         </div>
       </div>
 
@@ -80,17 +82,17 @@ require_once 'includes/form.val.php';
         <!-- CITY -->
         <div class="form-element"> 
           <label for="city">City: <span class="form-error"><?php echo $errorCity; ?></span></label>
-          <input type="text" id="city" name="city" value=<?php echo $city;?>>
+          <input type="text" id="city" name="city" value='<?php echo $city;?>'>
         </div>
         <!-- PRICE -->
         <div class="form-element"> 
           <label for="price">Price: <span class="form-error"><?php echo $errorPrice; ?></span></label>
-          <input type="text" id="price" name="price" value=<?php echo $price;?>>
+          <input type="text" id="price" name="price" value='<?php echo $price;?>'>
         </div>
         <!-- QUANTITY -->
         <div class="form-element"> 
           <label for="quantity">Quantity: <span class="form-error"><?php echo $errorQuantity; ?></span></label>
-          <input type="text" id="quantity" name="quantity" value=<?php echo $quantity;?>>
+          <input type="text" id="quantity" name="quantity" value='<?php echo $quantity;?>'>
         </div>
       </div>
 
@@ -99,7 +101,7 @@ require_once 'includes/form.val.php';
         <!-- COMMENTS -->
         <div class="form-element">
           <label for="comments">Comments: <span class="form-error"><?php echo $errorComments; ?></span></label>
-          <textarea  id="comments" name="comments" value=<?php echo $comments;?>></textarea>
+          <textarea  id="comments" name="comments"><?php echo $comments;?></textarea>
         </div>
       </div>
 

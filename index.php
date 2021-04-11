@@ -26,7 +26,7 @@
 #Andres Ardila (student_id)   2021-02-24    added the functionality of clearing all the fields when 
 #                                           the form is filled correctly
 #Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
-require_once "includes/loader.php";
+require_once "PHP/loader.php";
 loadTopElements("HOME");
 ?>
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->
