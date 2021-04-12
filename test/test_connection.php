@@ -11,8 +11,9 @@
 <body>
 <?php
      
-    require_once "../PHP/db_connection.php";
-    $conn = new DBConnection;
+    require_once "../PHP/dbh.php";
+    require_once "../PHP/customer.php";
+    $conn = new Dbh;
 
     
     $sqlQuery = "CALL customers_select(:user_name)";
@@ -26,14 +27,20 @@
 
     $PDOStatement->execute();
     if($row = $PDOStatement->fetch()){
-        echo $row['firstname'];
+        $customer = new Customer($row);
     }
     else{
         echo "fail";
     }
 
     $PDOStatement->closeCursor();
-    $PDOStatement->null;
+
+
+    echo $customer->getFirstName();
+    echo $customer->getLastName();
+    echo $customer->getAddress();
+    echo $customer->getId();
+
     
 
 

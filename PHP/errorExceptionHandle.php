@@ -5,7 +5,7 @@
 #       logical error: 
 
     
-$debug = false;
+$debug = true;
     function manageError($Number, $Message, $File, $Line){
         global $debug;
         

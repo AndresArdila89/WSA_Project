@@ -13,10 +13,13 @@ class Dbh{
     private $password;
     private $dbname;
     private $charset;
-
-    #PDO constructor receives string:dsn,username,password and  array:options
-    #dsn = Data Source Name information require to connect to the database
-
+ 
+    #PDO = PHP Data Object 
+    #DSN = Data Source Name information require to connect to the database
+    #DBH = Database Handle
+    #STH = Statement handle
+    #The PDO constructor receives dsn, username, password and options[]
+    
     public function connect(){
         $this->servername = "localhost";
         $this->username = "user-1931557";

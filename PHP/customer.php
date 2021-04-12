@@ -4,8 +4,13 @@
 #Andres Ardila      2021-04-10      customer.php file created
 #Andres Ardila      2021-04-10      created customer properties 
 #Andres Ardila      2021-04-10      created setters
+#Andres Ardila      2021-04-11      created getters
+#Andres Ardila      2021-04-11      create constructor with all the parameters
+
 
 require_once 'dbh.php';
+#The class Customer is inheriting from the class Dbh
+#The class Dbh is the database handle
 
 class Customer extends Dbh
 {
@@ -22,6 +27,26 @@ class Customer extends Dbh
     private $creation_date;
     private $modification_date;
 
+    #Constructor
+    #The constructor receives an ASSOCIATIVE ARRAY as an argumet 
+    #The $row contains all the information from the row
+
+    function __construct($row){
+        
+        $this->id = $row["customer_id"];
+        $this->firstname = $row["firstname"];
+        $this->lastname = $row["lastname"];
+        $this->address = $row["customer_address"];
+        $this->city = $row["city"];
+        $this->province = $row["province"];
+        $this->postal_code = $row["postal_code"];
+        $this->username = $row["user_name"];
+        $this->pwd = $row["pwd"];
+        $this->creation_date = $row["creation_date"];
+        $this->modification_date = $row["modification_date"];
+
+    }
+    
     #Settes
     public function setFirstName($firstname){
         $this->firstname = $firstname;
@@ -52,40 +77,44 @@ class Customer extends Dbh
     }
 
     public function setPwd($pwd){
-        $this->firstname = $firstName;
+        $this->firstname = $pwd;
     }
     
     #Getters
-    public function getFirstName($firstname){
-        $this->firstname = $firstname;
+    public function getId(){
+        return $this->id;
     }
 
-    public function getLastName($lastname){
-        $this->lastname = $lastname;
+    public function getFirstName(){
+        return $this->firstname;
     }
 
-    public function getAddress($address){
-        $this->address = $addres;
+    public function getLastName(){
+        return $this->lastname;
     }
 
-    public function getCity($city){
-        $this->city = $city;
+    public function getAddress(){
+        return $this->address;
     }
 
-    public function getProvince($province){
-        $this->province = $province;
+    public function getCity(){
+        return $this->city;
     }
 
-    public function getPostaCode($postal_code){
-        $this->postal_code = $postal_code;
+    public function getProvince(){
+        return $this->province;
     }
 
-    public function getUsername($username){
-        $this->username = $username;
+    public function getPostaCode(){
+        return $this->postal_code;
     }
 
-    public function getPwd($pwd){
-        $this->firstname = $firstName;
+    public function getUsername(){
+        return $this->username; 
+    }
+
+    public function getPwd(){
+        return $this->pwd;
     }
     
 }
