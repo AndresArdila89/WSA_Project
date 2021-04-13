@@ -4,8 +4,10 @@
 #Andres Ardila      2021-04-10      db_connection.php file created
 #Andres Ardila      2021-04-10      create DBConnect class
 #Andres Ardila      2021-04-10      added try and catch to find errors in the connection
-
-echo "DBConnection class loaded";
+if($debug)
+{
+    echo "DBConnection class loaded";
+}
 class Dbh{
 
     private $servername;

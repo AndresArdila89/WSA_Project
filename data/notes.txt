@@ -1,0 +1,24 @@
+# TABLE CUSTOMERS
+firstname (20 chart long)
+lastname (20 chart long)
+address (25 chart long)
+city (8 min)
+province (max 25 char)
+postal code (7 char)
+username (must be unique)(max 12 char)
+password (max 255 characters)
+
+#TABLE PRODUCTS
+product code: (max 12)
+description: (max 100)
+price: (2 decimals, max 10000$)
+cost:(2 decimals, optional)
+
+#TABLE PURCHASES
+foreign key of customers
+foreign key of products
+quantity sold (max 999)
+product price (if price change older orders should not be affected)
+comments (max 200, optional)
+created_date
+modify date
