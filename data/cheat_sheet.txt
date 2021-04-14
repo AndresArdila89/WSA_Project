@@ -64,3 +64,35 @@ FROM    table_name
 WHERE   condition
 ORDER BY column_name ASC|DES
 
+
+ASSOCIATIVE ARRAY
+-- declare 
+$myarray = array('f' => 'foo',  'b' => 'bar');
+
+-- remove an element
+unset($myarray[f])
+
+---add an element
+function array_push_assoc($array, $key, $value){
+$array[$key] = $value;
+return $array;
+}
+
+ARRAY
+-- add
+$array = $var
+or 
+array_push($array, "new value", $var)
+array_push() reruns the number of elements the array has 
+but is slower than the first option.
+
+DEFINE CONSTANTS
+-- out side a class 
+define("FOLDER_COMPONENTS","components/");
+-- Inside a class
+const LAST_NAME_MAX_LEN = 20;
+
+CONSTRUCTOR 
+funtion __construct(parameters){
+    // CODE
+}
