@@ -37,7 +37,6 @@ class Dbh{
 
             $pdo = new PDO($dsn, $this->username, $this->password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "connected!!";
             
             return $pdo;
         }

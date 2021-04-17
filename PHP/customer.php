@@ -9,6 +9,10 @@
 #Andres Ardila      2021-04-12      created constants for max length
 #Andres Ardila      2021-04-12      added validation for javascript and html injection
 #Andres Ardila      2021-04-12      added validation for max string length
+#Andres Ardila      2021-04-16      modify constructor added validation
+#Andres Ardila      2021-04-16      added save function
+#Andres Ardila      2021-04-16      added modification date 
+
 
 require_once 'dbh.php';
 #The class Customer is inheriting from the class Dbh
@@ -44,30 +48,32 @@ class Customer extends Dbh
     #The constructor receives an ASSOCIATIVE ARRAY as an argumet 
     #The $row contains all the information from the row
 
-    function __construct($row){
-        
-        $this->id = $row["customer_id"];
-        $this->setFirstName($row["firstname"]);
-        $this->setLastName($row["lastname"]);
-        $this->setAddress($row["customer_address"]);
-        $this->setCity($row["city"]);
-        $this->setProvince($row["province"]);
-        $this->setPostaCode($row["postal_code"]);
-        $this->setUsername($row["user_name"]);
-        $this->setPassword($row["pwd"]);
-        // $this->firstname = $row["firstname"];
-        // $this->lastname = $row["lastname"];
-        // $this->address = $row["customer_address"];
-        // $this->city = $row["city"];
-        // $this->province = $row["province"];
-        // $this->postal_code = $row["postal_code"];
-        // $this->username = $row["user_name"];
-        // $this->pwd = $row["pwd"];
-        // $this->creation_date = $row["creation_date"];
-        // $this->modification_date = $row["modification_date"];
+    function __construct($row=[]){
+        if(isset($row['customer_id'])){
+
+            $this->setId($row["customer_id"]);
+            $this->setFirstName($row["firstname"]);
+            $this->setLastName($row["lastname"]);
+            $this->setAddress($row["customer_address"]);
+            $this->setCity($row["city"]);
+            $this->setProvince($row["province"]);
+            $this->setPostaCode($row["postal_code"]);
+            $this->setUsername($row["user_name"]);
+            $this->setPassword($row["pwd"]);
+        }
+        else {
+            echo "overload";
+            echo $row;
+            $this->load($row);
+        }
+
     }
-    
+
     #Settes
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
     #firstName max lenght 
     public function setFirstName($firstname){
@@ -186,18 +192,83 @@ class Customer extends Dbh
     }
 
     #Methods
+    /**
+     * Customer is save on the DATABASE 
+     * addToDb(array ASSOC_ARRAY)
+     */
+    public function save()
+    {
+        if($this->searchUsername($this->username))
+        {   $date = date('Y-m-d H:i:s');
+            $SQLQuery = "CALL customers_update(:firstname,:lastname,".
+                        ":address,:city,:province,:postal_code,:username,:pwd,:modification_date)";
+            $PDOStatement = $this->connect()->prepare($SQLQuery);
+            $PDOStatement->bindParam(":firstname",$this->firstname);
+            $PDOStatement->bindParam(":lastname",$this->lastname);
+            $PDOStatement->bindParam(":address",$this->address);
+            $PDOStatement->bindParam(":city",$this->city);
+            $PDOStatement->bindParam(":province",$this->province);
+            $PDOStatement->bindParam(":postal_code",$this->postal_code);
+            $PDOStatement->bindParam(":username",$this->username);
+            $PDOStatement->bindParam(":pwd",$this->pwd);
+            $PDOStatement->bindParam(":modification_date",$date);
+        }
+        else 
+        {
+            $SQLQuery = "CALL customers_insert(:firstname,:lastname,".
+                        ":address,:city,:province,:postal_code,:username,:pwd)";
+            $PDOStatement = $this->connect()->prepare($SQLQuery);
+            $PDOStatement->bindParam(":firstname",$this->firstname);
+            $PDOStatement->bindParam(":lastname",$this->lastname);
+            $PDOStatement->bindParam(":address",$this->address);
+            $PDOStatement->bindParam(":city",$this->city);
+            $PDOStatement->bindParam(":province",$this->province);
+            $PDOStatement->bindParam(":postal_code",$this->postal_code);
+            $PDOStatement->bindParam(":username",$this->username);
+            $PDOStatement->bindParam(":pwd",$this->pwd);
+        }
 
-    public function addToDb(){
+        $PDOStatement->execute();
+        $PDOStatement->closeCursor();
+    }
+
+    public function load($username){
+            
+        if($row = $this->searchUsername($username))
+        {
+            $this->setId($row["customer_id"]);
+            $this->setFirstName($row["firstname"]);
+            $this->setLastName($row["lastname"]);
+            $this->setAddress($row["customer_address"]);
+            $this->setCity($row["city"]);
+            $this->setProvince($row["province"]);
+            $this->setPostaCode($row["postal_code"]);
+            $this->setUsername($row["user_name"]);
+            $this->setPassword($row["pwd"]);
+
+        }
 
     }
-    public function loadFromDb(){
 
-    }
-    public function saveToDb(){
-
-    }
-    public function deleteFromDb(){
+    public function delete(){
         
+    }
+
+    private function searchUsername($username)
+    {
+        $SQLQuery = "CALL customers_select(:username)";
+        $PDOStatement = $this->connect()->prepare($SQLQuery);
+        $PDOStatement->bindParam(":username",$username);
+        $PDOStatement->execute();
+
+        if($row = $PDOStatement->fetch())
+        {
+            $PDOStatement->closeCursor();
+            return $row;
+        }
+
+        $PDOStatement->closeCursor();
+        return false;
     }
     
 }

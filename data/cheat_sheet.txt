@@ -64,6 +64,13 @@ FROM    table_name
 WHERE   condition
 ORDER BY column_name ASC|DES
 
+-- INSERT
+INSERT  INTO table_name (column_name, ... )
+        VALUE( value_1, ...)
+
+
+
+---------------------------
 
 ASSOCIATIVE ARRAY
 -- declare 
