@@ -8,26 +8,11 @@ require_once 'dbh.php';
 
 class Collection extends Dbh
 {
+    //Note: It is better to implement an associative array
+    // where the key would be the uuid or username of the object and the value the object
+    // this makes posible the remove action without reindexing the array
+
     private $collection = [];
-
-    //This constructor allows all the collections to autoload
-    //the rows from the database tables  
-
-    function __construct($SQLQuery)
-    {
-        // prepare the statement 
-        $PDOStatement = $this->connect()->prepare($SQLQuery);
-        // executes the statement
-        $PDOStatement->execute();
-        // fetch the data from the PDO
-        while($row = $PDOStatement->fetch())
-        {
-            //adding object to the collection 
-            $obj = new Customer($row);
-            $this->add($obj->getId(), $obj); 
-        }
-        $PDOStatement->closeCursor();
-    }
 
     // Methods 
 

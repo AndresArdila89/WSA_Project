@@ -1,9 +1,11 @@
 <?php
 // COMPONENTS 
 define("FOLDER_COMPONENTS","components/");
+
 //DATA FOLDER ERRORS EXCEPTIONS JSON
 define("FOLDER_DATA","data/");
 define("FILE_ORDERS", FOLDER_DATA . "orders.json");
+
 // CSS
 define("FOLDER_CSS","css/");
 define("FILE_CSS_STYLE",FOLDER_CSS . "style.css");
@@ -25,7 +27,6 @@ define("FORM_VALIDATION", FOLDER_INCLUDES . "form.val.php");
 define("FOLDER_IMAGES",'images/');
 define("IMAGES_ADS",array('ads_1.png','ads_2.png','ads_3.png'));
 
-
 //NAVIGATION BAR 
 define("NAV_TABS",array('HOME'=> PAGE_HOME,
                         'SHOP'=> PAGE_SHOP,
@@ -42,11 +43,9 @@ define("COMMENTS_MAX_LEN",200);
 define("PRICE_MAX_VAL",10000);
 define("QUANTITY_MIN_VAL",1);
 define("QUANTITY_MAX_VAL",99);
-define("PRODUCT_CODE_INIT_CHAR",'p');
 
 //TAXES
 define("VALUE_TAX",0.1205);
-
 
 //HOME PAGE CONTENT TEXT
 define("CONTENT_TEXT", "Custom printed mugs are a great way to promote your business, organization, 

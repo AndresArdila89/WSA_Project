@@ -15,6 +15,7 @@ class Dbh{
     private $password;
     private $dbname;
     private $charset;
+    
  
     #PDO = PHP Data Object 
     #DSN = Data Source Name information require to connect to the database
@@ -28,6 +29,7 @@ class Dbh{
         $this->password = "123";
         $this->dbname = "database_1931557";
         $this->charset = "utf8mb4";
+        
 
         try
         { 
@@ -44,5 +46,7 @@ class Dbh{
             echo "Connection error: " . $e->getMessage();
         }
     }
+
+
 }
 ?>

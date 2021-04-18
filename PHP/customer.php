@@ -20,10 +20,8 @@ require_once 'dbh.php';
 
 class Customer extends Dbh
 {
-
-
     #Customer Properties
-    private $id;
+    private $customer_id;
     private $firstname;
     private $lastname;
     private $address;
@@ -36,21 +34,21 @@ class Customer extends Dbh
     private $modification_date;
 
     private const FIRST_NAME_MAX_LEN = 20;
-    const LAST_NAME_MAX_LEN = 20;
-    const ADDRESS_MAX_LEN = 25;
-    const CITY_MAX_LEN = 8;
-    const PROVINCE_MAX_LEN = 25;
-    const POSTAL_CODE_MAX_LEN = 7;
-    const USERNAME_MAX_LEN = 12;
+    private const LAST_NAME_MAX_LEN = 20;
+    private const ADDRESS_MAX_LEN = 25;
+    private const CITY_MAX_LEN = 8;
+    private const PROVINCE_MAX_LEN = 25;
+    private const POSTAL_CODE_MAX_LEN = 7;
+    private const USERNAME_MAX_LEN = 12;
     
 
     #Constructor
     #The constructor receives an ASSOCIATIVE ARRAY as an argumet 
     #The $row contains all the information from the row
-
+    
     function __construct($row=[]){
-        if(isset($row['customer_id'])){
-
+        if(isset($row['customer_id']))
+        {
             $this->setId($row["customer_id"]);
             $this->setFirstName($row["firstname"]);
             $this->setLastName($row["lastname"]);
@@ -61,18 +59,16 @@ class Customer extends Dbh
             $this->setUsername($row["user_name"]);
             $this->setPassword($row["pwd"]);
         }
-        else {
-            echo "overload";
-            echo $row;
+        else 
+        {
             $this->load($row);
         }
-
     }
 
     #Settes
     public function setId($id)
     {
-        $this->id = $id;
+        $this->customer_id = $id;
     }
 
     #firstName max lenght 
@@ -156,7 +152,7 @@ class Customer extends Dbh
     
     #Getters
     public function getId(){
-        return $this->id;
+        return $this->customer_id;
     }
 
     public function getFirstName(){
@@ -199,41 +195,45 @@ class Customer extends Dbh
     public function save()
     {
         if($this->searchUsername($this->username))
-        {   $date = date('Y-m-d H:i:s');
-            $SQLQuery = "CALL customers_update(:firstname,:lastname,".
-                        ":address,:city,:province,:postal_code,:username,:pwd,:modification_date)";
-            $PDOStatement = $this->connect()->prepare($SQLQuery);
-            $PDOStatement->bindParam(":firstname",$this->firstname);
-            $PDOStatement->bindParam(":lastname",$this->lastname);
-            $PDOStatement->bindParam(":address",$this->address);
-            $PDOStatement->bindParam(":city",$this->city);
-            $PDOStatement->bindParam(":province",$this->province);
-            $PDOStatement->bindParam(":postal_code",$this->postal_code);
-            $PDOStatement->bindParam(":username",$this->username);
-            $PDOStatement->bindParam(":pwd",$this->pwd);
-            $PDOStatement->bindParam(":modification_date",$date);
-        }
-        else 
-        {
-            $SQLQuery = "CALL customers_insert(:firstname,:lastname,".
-                        ":address,:city,:province,:postal_code,:username,:pwd)";
-            $PDOStatement = $this->connect()->prepare($SQLQuery);
-            $PDOStatement->bindParam(":firstname",$this->firstname);
-            $PDOStatement->bindParam(":lastname",$this->lastname);
-            $PDOStatement->bindParam(":address",$this->address);
-            $PDOStatement->bindParam(":city",$this->city);
-            $PDOStatement->bindParam(":province",$this->province);
-            $PDOStatement->bindParam(":postal_code",$this->postal_code);
-            $PDOStatement->bindParam(":username",$this->username);
-            $PDOStatement->bindParam(":pwd",$this->pwd);
-        }
+        {return false;}
+
+        $SQLQuery = "CALL customers_insert(:firstname,:lastname,".
+                    ":address,:city,:province,:postal_code,:username,:pwd)";
+        $PDOStatement = $this->connect()->prepare($SQLQuery);
+        $PDOStatement->bindParam(":firstname",$this->firstname);
+        $PDOStatement->bindParam(":lastname",$this->lastname);
+        $PDOStatement->bindParam(":address",$this->address);
+        $PDOStatement->bindParam(":city",$this->city);
+        $PDOStatement->bindParam(":province",$this->province);
+        $PDOStatement->bindParam(":postal_code",$this->postal_code);
+        $PDOStatement->bindParam(":username",$this->username);
+        $PDOStatement->bindParam(":pwd",$this->pwd);
+        $PDOStatement->execute();
+        $PDOStatement->closeCursor();
+        return true;
+    }
+
+    public function update()
+    {
+        $SQLQuery = "CALL customers_update(:id,:firstname,:lastname,".
+                    ":address,:city,:province,:postal_code,:username,:pwd)";
+        $PDOStatement = $this->connect()->prepare($SQLQuery);
+        $PDOStatement->bindParam(":id",$this->customer_id);
+        $PDOStatement->bindParam(":firstname",$this->firstname);
+        $PDOStatement->bindParam(":lastname",$this->lastname);
+        $PDOStatement->bindParam(":address",$this->address);
+        $PDOStatement->bindParam(":city",$this->city);
+        $PDOStatement->bindParam(":province",$this->province);
+        $PDOStatement->bindParam(":postal_code",$this->postal_code);
+        $PDOStatement->bindParam(":username",$this->username);
+        $PDOStatement->bindParam(":pwd",$this->pwd);
 
         $PDOStatement->execute();
         $PDOStatement->closeCursor();
     }
 
-    public function load($username){
-            
+    public function load($username)
+    {
         if($row = $this->searchUsername($username))
         {
             $this->setId($row["customer_id"]);
@@ -245,9 +245,7 @@ class Customer extends Dbh
             $this->setPostaCode($row["postal_code"]);
             $this->setUsername($row["user_name"]);
             $this->setPassword($row["pwd"]);
-
         }
-
     }
 
     public function delete(){

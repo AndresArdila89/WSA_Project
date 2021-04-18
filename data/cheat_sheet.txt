@@ -20,6 +20,37 @@ define("NAV_TABS",array('HOME'=> PAGE_HOME,
 // HOW TO ADD A FILE ONLY ONCE 
 require_once "includes/loader.php";
 
+// VARIABLES CHECKING FUNTIONS
+var_dump();
+gettype();
+
+is_string() // return boolean
+is_int()
+is_bool()
+is_double()
+
+// CHECK IF VARIABLE IS DEFINED
+isset() // returns boolean
+
+// NUMBER CHECKING FUNTIONS
+is_float();
+is_double();
+is_int();
+is_numeric();
+
+//NUMBER FUNCTIONS
+abs()  absolute value
+pow()
+sqrt()
+max()
+min()
+round()
+floor()
+ceil()
+
+//FORMATING NUMBERS
+number_format($number,decinal,decinal_separator,thousand_separator)
+
 //DISPLAY DATE
 echo date("Y");
 $date = (new DateTime())->format('H:m:s:u');
@@ -50,6 +81,46 @@ header("location: success.php");
 //SESSION global
 session_start();
 $_SESSION["firstname"]
+
+
+// CREATE A DATABASE HANDLE 
+class Dbh{
+
+    private $servername;
+    private $username;
+    private $password;
+    private $dbname;
+    private $charset;
+ 
+    #PDO = PHP Data Object 
+    #DSN = Data Source Name information require to connect to the database
+    #DBH = Database Handle
+    #STH = Statement handle
+    #The PDO constructor receives dsn, username, password and options[]
+    
+    public function connect(){
+        $this->servername = "localhost";
+        $this->username = "user-1931557";
+        $this->password = "123";
+        $this->dbname = "database_1931557";
+        $this->charset = "utf8mb4";
+
+        try
+        { 
+            $dsn = "mysql:host=" . $this->servername . 
+                   ";dbname=" . $this->dbname . 
+                   ";charset=" . $this->charset;
+
+            $pdo = new PDO($dsn, $this->username, $this->password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            return $pdo;
+        }
+        catch (PDOException $e) {
+            echo "Connection error: " . $e->getMessage();
+        }
+    }
+}
 
 
 //CASTING 

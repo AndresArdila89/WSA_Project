@@ -13,49 +13,42 @@
     require_once "../PHP/dbh.php";
     require_once "../PHP/customer.php";
     require_once "../PHP/customers.php";
+    require_once "../PHP/product.php";
+    require_once "../PHP/products.php";
 
-    // $conn = new Dbh;
-    // $sqlQuery = "CALL customers_select(:user_name)";
-    // $PDOStatement = $conn->connect()->prepare($sqlQuery);
-    // $user = "cospina";
-    // $PDOStatement->bindParam(':user_name',$user);
 
-    // $PDOStatement->execute();
-    // if($row = $PDOStatement->fetch()){
-    //     $customer = new Customer($row);
-    // }
-    // else{
-    //     echo "fail";
-    // }
+    $productsList = new Products();
 
-    // $PDOStatement->closeCursor();
-
-    $customerList = new Customers();
-
-    foreach ($customerList->listAll() as $val) {
+    foreach ($productsList->listAll() as $val) {
         echo "<br>";
-        echo $val->getLastName();
+        echo $val->getProductCode();
     }
 
     $customer = [
                 'customer_id'=> '0',
-                'firstname'=> 'jhon',
-                'lastname'=> 'match',
+                'firstname'=> 'sisas',
+                'lastname'=> 'ole',
                 'customer_address'=> 'sante catherine',
                 'city'=> 'montreal',
                 'province'=> 'quebec',
                 'postal_code'=> '111222',
-                'user_name'=>'jmatch',
+                'user_name'=>'erasdder',
                 'pwd'=>'secret'
     ];
 
-    $cli = new Customer('jmatch');
     
-    echo '<br>' . $cli->getUsername();
-    $cli->setFirstName('aurora');
-    echo '<br>' . $cli->getFirstName();
-    $cli->save();
-    
+    $product = [
+                'product_id'=> '0',
+                'product_code'=> 'P4545',
+                'description'=> 'glass',
+                'price'=> 100,
+                'cost'=> 10,
+    ];
+
+    $pd = new Product();
+    $pd->load("p3434");
+    echo "<br>" . $pd->getModificationDate();
+
 ?>
 
     
