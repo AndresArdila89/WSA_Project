@@ -241,16 +241,22 @@ a {
     
                             
 }
-
-.main-navbar {
-    grid-column: navigation 1 / navigation 4;
+.signin-navbar {
+    grid-column: navigation 3 / navigation 4;
     grid-row: firstNav-row;
     padding: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+}
 
+.main-navbar {
+    grid-column: navigation 1 / navigation 3;
+    grid-row: firstNav-row;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-navbar a {
@@ -378,7 +384,16 @@ textarea {
 .primary-text{
     color: var(--secondary-color);
 }
+/*--------signup form------------*/
 
+.logo-signup {
+    width: 120px;
+    height: 60px;
+}
+.center {
+  margin: auto;
+  padding: 10px;
+}
 
 /* ------------------ BUTTONS --------------------*/
 

@@ -15,13 +15,15 @@
     require_once "../PHP/customers.php";
     require_once "../PHP/product.php";
     require_once "../PHP/products.php";
+    require_once "../PHP/purchase.php";
+    require_once "../PHP/purchases.php";
 
+    $purchasesList = new Purchases();
 
-    $productsList = new Products();
-
-    foreach ($productsList->listAll() as $val) {
+    foreach ($purchasesList->listAll() as $val) 
+    {
         echo "<br>";
-        echo $val->getProductCode();
+        echo $val->getId();
     }
 
     $customer = [
@@ -36,7 +38,6 @@
                 'pwd'=>'secret'
     ];
 
-    
     $product = [
                 'product_id'=> '0',
                 'product_code'=> 'P4545',
@@ -44,13 +45,16 @@
                 'price'=> 100,
                 'cost'=> 10,
     ];
+    echo "<br>---------- Testing ------------<br>";
+    $id = '7aae0557-97fc-11eb-9906-0800272e460d';
+    $purchase = new Purchase();
+    $purchase->load($id);
 
-    $pd = new Product();
-    $pd->load("p3434");
-    echo "<br>" . $pd->getModificationDate();
+    $purchase->setComments('Best product on the market');
+    echo $purchase->getProductFK();
+    $purchase->update();
+    echo $purchase->getComments();
 
 ?>
-
-    
 </body>
 </html>

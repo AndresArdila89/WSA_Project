@@ -6,7 +6,6 @@
 #Andres Ardila (student_id)   2021-03-06    added the loadOrders function 
 #Andres Ardila (student_id)   2021-03-06    added all orders title
 require_once "PHP/loader.php";
-
 loadTopElements("ABOUT");
 ?>
 

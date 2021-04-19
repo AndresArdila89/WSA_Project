@@ -13,7 +13,6 @@ loadTopElements("ABOUT");
     <a class="button" href=<?php echo PAGE_SHOP; ?>>Crate a NEW ORDER</a>
     <a class="button"  href=<?php echo PAGE_HOME; ?>>Return to the HOME PAGE</a>
     </div>
-
 </div>
 
 <?php loadComponent("footer");?>

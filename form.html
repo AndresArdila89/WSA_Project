@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="css/style.css" >
+<body>
+    <h1>SignUp FORM</h1> 
+    <form action="shop.php" method="post" class="form">
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label>First Name: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text" name="firstname" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Last Name: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="lastname" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Address: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="customer_address" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >City: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="city" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Province: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="province" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Postal Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="postal_code" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Username: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="username" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Password: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="pwd" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+          <button class="button" type="submit" name="register">SignUp</button>
+        </div>
+      </div>
+    </form>
+
+
+    <!----------------------------------------------------------------------------------------------->
+    
+    
+    
+    <h1>Product FORM</h1> 
+    <form action="shop.php" method="post" class="form">
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label>Product Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text" name="product_code" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label > Description: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="description" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Price: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="price" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label >Cost: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text"  name="cost" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+          <button class="button" type="submit" name="save">Add Product</button>
+        </div>
+      </div>
+    </form>
+    
+    
+    
+    
+    <h1>SignIn FORM</h1> 
+    <form action="shop.php" method="post" class="form">
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+            <h1 class="center-text">SIGNUP</h1>
+            <img class="logo-signup center" src="./images/logo.png"/>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label>Username: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="text" name="username" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+
+      <!-- ROW -->
+      <div class="form-section"> 
+        <div class="form-element">
+          <label > Password: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
+          <input type="password"  name="pwd" value='<?php  echo $productCode;?>'>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+          <button class="button" type="submit" name="signin">SignIn</button>
+        </div>
+      </div>
+      <!-- ROW -->
+      <div class="form-section">
+        <!-- COMMENTS -->
+        <div class="form-element">
+            <span class="center-text">Need a user account? <a href="">REGISTER</a></span>
+        </div>
+
+      </div>
+    </form>
+</body>
+</html>

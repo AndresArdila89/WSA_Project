@@ -13,7 +13,6 @@
 #Andres Ardila      2021-04-16      added save function
 #Andres Ardila      2021-04-16      added modification date 
 
-
 require_once 'dbh.php';
 #The class Customer is inheriting from the class Dbh
 #The class Dbh is the database handle
@@ -41,7 +40,6 @@ class Customer extends Dbh
     private const POSTAL_CODE_MAX_LEN = 7;
     private const USERNAME_MAX_LEN = 12;
     
-
     #Constructor
     #The constructor receives an ASSOCIATIVE ARRAY as an argumet 
     #The $row contains all the information from the row

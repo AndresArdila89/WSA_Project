@@ -12,6 +12,8 @@
 
       }
     ?>
-    
+  </nav>
+  <nav class="signin-navbar">
+      <a href='form.html'>SIGNIN</a>
   </nav>
 </header>
