@@ -28,13 +28,13 @@
 
     $customer = [
                 'customer_id'=> '0',
-                'firstname'=> 'sisas',
-                'lastname'=> 'ole',
+                'firstname'=> 'Andres',
+                'lastname'=> 'Ardila',
                 'customer_address'=> 'sante catherine',
                 'city'=> 'montreal',
                 'province'=> 'quebec',
-                'postal_code'=> '111222',
-                'user_name'=>'erasdder',
+                'postal_code'=> 'H9C2Y6',
+                'user_name'=>'andresA',
                 'pwd'=>'secret'
     ];
 
@@ -46,14 +46,25 @@
                 'cost'=> 10,
     ];
     echo "<br>---------- Testing ------------<br>";
-    $id = '7aae0557-97fc-11eb-9906-0800272e460d';
-    $purchase = new Purchase();
-    $purchase->load($id);
 
-    $purchase->setComments('Best product on the market');
-    echo $purchase->getProductFK();
-    $purchase->update();
-    echo $purchase->getComments();
+
+    $cu = new Customer($customer);
+    $cu->save();
+    $cu->login("andresA",'secret');
+
+    if(isset($_SESSION['uuid'])){
+        echo "<br>";
+        echo $_SESSION['firstname'];
+        echo "<br>";
+        echo $_SESSION['lastname'];
+        echo "<br>";
+        echo $_SESSION['uuid'];
+        echo "<br>";
+    }
+    
+
+
+
 
 ?>
 </body>

@@ -59,7 +59,7 @@ class Customer extends Dbh
         }
         else 
         {
-            $this->load($row);
+            echo "empty object created";
         }
     }
 
@@ -145,6 +145,7 @@ class Customer extends Dbh
 
     public function setPassword($pwd){
         $pwd = htmlspecialchars(trim($pwd));
+        $pwd = password_hash($pwd,PASSWORD_DEFAULT);
         $this->pwd = $pwd;
     }
     
@@ -265,6 +266,36 @@ class Customer extends Dbh
 
         $PDOStatement->closeCursor();
         return false;
+    }
+
+    public function login($username,$password){
+
+            $SQLQuery = "CALL customers_login(:username)";
+            $PDOStatement = $this->connect()->prepare($SQLQuery);
+            $PDOStatement->bindParam(":username",$username);
+            $PDOStatement->execute();
+
+            if($row = $PDOStatement->fetch())
+            {
+
+                $PDOStatement->closeCursor();
+                $hashedPwdDB = $row['pwd'];
+                echo $hashedPwdDB;
+                if(password_verify($password,$row['pwd']))
+                {
+                    // create the session   
+                    session_start();
+                    // use the global variable SESSION to store the customer_id under the key uuid
+                    $_SESSION['uuid'] = $row['customer_id'];
+                    $_SESSION['user_name'] = $row['user_name'];
+                    $_SESSION['firstname'] = $row['firstname'];
+                    $_SESSION['lastname'] = $row['lastname'];
+                    return true;
+                }
+                
+            }
+            echo "does not exist";
+            return false;
     }
     
 }

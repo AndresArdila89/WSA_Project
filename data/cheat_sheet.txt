@@ -174,3 +174,13 @@ CONSTRUCTOR
 funtion __construct(parameters){
     // CODE
 }
+
+
+
+# PASSWORD HASHING
+
+$hasshedPwd = password_hash(password_string, PASSWORD_DEFAULT);
+
+# PASSWORD VERIFICATION 
+this function returns a boolean
+$verification = password_verify(user_input, $hasshedPwd);

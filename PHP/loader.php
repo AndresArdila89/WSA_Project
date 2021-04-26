@@ -194,4 +194,11 @@ function hasNumbers($str)
     return false;
 }
 
+
+
+
+// project 3 new funtions 
+
+
+
 ?>
