@@ -2,7 +2,7 @@
 
 require_once "PHP/loader.php";
 
-loadTopElements("ABOUT");
+loadTopElements("SUCCES");
 ?>
 
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->

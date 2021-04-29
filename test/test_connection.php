@@ -52,16 +52,7 @@
     $cu->save();
     $cu->login("andresA",'secret');
 
-    if(isset($_SESSION['uuid'])){
-        echo "<br>";
-        echo $_SESSION['firstname'];
-        echo "<br>";
-        echo $_SESSION['lastname'];
-        echo "<br>";
-        echo $_SESSION['uuid'];
-        echo "<br>";
-    }
-    
+
 
 
 

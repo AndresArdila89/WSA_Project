@@ -27,10 +27,11 @@
 #                                           the form is filled correctly
 #Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
 #Andres Ardila (student_id)   2021-04-09    fix comments box from clearing after validation error
+#Andres Ardila (student_id)   2021-04-28    add login condition, show login option.
 
 require_once "PHP/loader.php";
 require_once  FORM_VALIDATION;
-loadTopElements("HOME");
+loadTopElements("SHOP");
 ?>
 
 <!-- app-layout wraps the entire page, the page is build using css GRID.-->
@@ -53,7 +54,16 @@ loadTopElements("HOME");
   </div>
 
   <div class="content">
+  <?php 
+      if(!isset($_SESSION['uuid'])){
 
+        echo "<div> <h2> To Access this page first you need to login </h2></div>";
+      }
+      else {
+        
+  ?>
+  
+  
     <form action="shop.php" method="post" class="form">
       <!-- ROW -->
       <div class="form-section"> 
@@ -125,6 +135,12 @@ loadTopElements("HOME");
       </div>
     </form>
   </div>
+
+  
+  <?php 
+      }
+?>
+</div>
 
 </div>
 

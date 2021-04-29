@@ -4,10 +4,10 @@
 #DEVELOPER                    DATE:         COMMNETS
 #Andres Ardila (student_id)   2021-03-13    
 #Andres Ardila (student_id)   2021-03-10    added loaderOrders function
-#Andres Ardila (student_id)   2021-03-10    
-
+#Andres Ardila (student_id)   2021-04-28    added signUp form funtion    
 
 require_once "constants.php";
+require_once "PHP/customer.php";
 // This function loads the head file and recibes as a parameter
 // the title of the page, this value changes the name of the page tab.
 function loadHead($title){
@@ -197,8 +197,60 @@ function hasNumbers($str)
 
 
 
-// project 3 new funtions 
+// project 3 code
 
+
+
+
+
+function loadLogin(){
+
+    ?>
+          <button onclick="menu()">Login</button>
+
+            <div id="login-menu"  class="hide-element">
+                <form action="" method="POST" class="form">
+                    <!-- ROW -->
+                    <div class="form-section"> 
+                        <div class="form-element">
+                            <h1 class="center-text">SIGNUP</h1>
+                            <img class="logo-signup center" src="./images/logo.png"/>
+                        </div>
+                    </div>
+
+                    <!-- ROW -->
+                    <div class="form-section"> 
+                        <div class="form-element">
+                            <label>Username: <span class="form-error">error here</span></label>
+                            <input type="text" name="username" placeholder="Username">
+                        </div>
+                    </div>
+
+                    <!-- ROW -->
+                    <div class="form-section"> 
+                        <div class="form-element">
+                            <label > Password: <span class="form-error">Error here</span></label>
+                            <input type="password"  name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <div class="form-section">
+                    <!-- COMMENTS -->
+                        <div class="form-element">
+                            <button class="button" type="submit" name="signin">SignIn</button>
+                        </div>
+                    </div>
+                    <!-- ROW -->
+                    <div class="form-section">
+                    <!-- COMMENTS -->
+                        <div class="form-element">
+                            <span class="center-text">Need a user account? <a href="register.php">REGISTER</a></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    <?php
+}
 
 
 ?>

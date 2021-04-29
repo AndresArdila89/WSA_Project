@@ -59,7 +59,6 @@ class Customer extends Dbh
         }
         else 
         {
-            echo "empty object created";
         }
     }
 
@@ -74,10 +73,14 @@ class Customer extends Dbh
         $firstname = htmlspecialchars(trim($firstname));
         if(strlen($firstname) > self::FIRST_NAME_MAX_LEN)
         {
-            return false;
+            return "max leng is " . self::FIRST_NAME_MAX_LEN;
+        }
+        if($firstname == "")
+        {
+            return "field empty";
         }
         $this->firstname = $firstname;
-        return true;
+        return false;
     }
 
     public function setLastName($lastname){
@@ -85,31 +88,42 @@ class Customer extends Dbh
 
         if(strlen($lastname) > self::LAST_NAME_MAX_LEN)
         {
-            return false;
+            return "max leng is " . self::LAST_NAME_MAX_LEN;
+        }
+        if($lastname == ""){
+            return "field empty";
         }
 
         $this->lastname = $lastname;
-        return true;
+        return false;
     }
 
     public function setAddress($address){
         $address = htmlspecialchars(trim($address));
         if(strlen($address) > self::ADDRESS_MAX_LEN){
-            return false;
+            return "max leng is " . self::ADDRESS_MAX_LEN;
+         }
+        if($address == ""){
+            return "field empty";
         }
 
         $this->address = $address;
-        return true;
+        return false;
     }
 
     public function setCity($city){
         $city = htmlspecialchars(trim($city));
         if(strlen($city) > self::CITY_MAX_LEN)
         {
-             return false;
+            return "max leng is " . self::CITY_MAX_LEN;
         }
+        if($city == "")
+        {
+            return "fiel empty";
+        }
+
         $this->city = $city;
-        return true;
+        return false;
     }
 
     public function setProvince($province){
@@ -117,36 +131,54 @@ class Customer extends Dbh
         
         if(strlen($province) > self::PROVINCE_MAX_LEN) 
         {
-             return false;
+            return "max leng is " . self::PROVINCE_MAX_LEN;
+        }
+        if($province == "")
+        {
+            return "field empty";
         }
         $this->province = $province;
-        return true;
+        return false;
     }
 
     public function setPostaCode($postal_code){
         $postal_code = htmlspecialchars(trim($postal_code));
         if(strlen($postal_code) > self::POSTAL_CODE_MAX_LEN) 
         {
-             return false;
+            return "max leng is " . self::POSTAL_CODE_MAX_LEN;
+        }
+        if($postal_code ==  "")
+        {
+            return "field empty";
         }
         $this->postal_code = $postal_code;
-        return true;
+        return false;
     }
 
     public function setUsername($username){
         $username = htmlspecialchars(trim($username));
         if(strlen($username) > self::USERNAME_MAX_LEN) 
         {
-             return false;
+            return "max leng is " . self::USERNAME_MAX_LEN;
+        }
+        if($username == "")
+        {
+            return "field empty";
         }
         $this->username = $username;
-        return true;
+        return false;
     }
 
     public function setPassword($pwd){
         $pwd = htmlspecialchars(trim($pwd));
         $pwd = password_hash($pwd,PASSWORD_DEFAULT);
+        if($pwd == "")
+        {
+            return "field empty";
+        }
+        
         $this->pwd = $pwd;
+        return false;
     }
     
     #Getters
@@ -280,11 +312,8 @@ class Customer extends Dbh
 
                 $PDOStatement->closeCursor();
                 $hashedPwdDB = $row['pwd'];
-                echo $hashedPwdDB;
                 if(password_verify($password,$row['pwd']))
                 {
-                    // create the session   
-                    session_start();
                     // use the global variable SESSION to store the customer_id under the key uuid
                     $_SESSION['uuid'] = $row['customer_id'];
                     $_SESSION['user_name'] = $row['user_name'];

@@ -212,6 +212,15 @@ a {
     grid-row: content-row 3 / footer-row;
 }
 
+.registration {
+    
+    grid-column: one-eighty 1 / one-eighty 4;
+    grid-row: banner-row / about-row 1;
+    padding: 0 200px 0 200px;
+    /* max-height: 500px; */
+    overflow: hidden;
+    
+}
 
 /* ---------------------- Top bar --------------------------- */
 /* fr unit is a fractional part of the space available  */
@@ -232,6 +241,7 @@ a {
     grid-template-columns:  [logo] 1fr 
                             [navigation] 1fr
                             [navigation] 1fr 
+                            [navigation] 1fr 
                             [navigation] 1fr;
 
     grid-template-rows: [firstNav-row] auto;
@@ -241,8 +251,8 @@ a {
     
                             
 }
-.signin-navbar {
-    grid-column: navigation 3 / navigation 4;
+.nav-signin {
+    grid-column: navigation 3 / navigation 5;
     grid-row: firstNav-row;
     padding: 30px;
     display: flex;
@@ -286,6 +296,49 @@ a {
 .logo {
     max-height: 60px;
 }
+
+.nav-input-box {
+    width: 150px;
+    
+}
+
+.nav-input-box:first-child {
+    margin-right: 20px;
+}
+
+#login-menu {
+    position: absolute;
+    right: 1%;
+    top: 120px;
+    opacity: 1;
+    transition: opacity 1s;
+    display: none;
+}
+
+.show-element
+{
+    opacity: 0;
+    animation: showMenu 0.15s 1 ease-in forwards;
+}
+
+@keyframes showMenu 
+{
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.hide-element
+{
+    opacity: 1;
+    animation: hideMenu 0.15s 1 ease-out forwards;
+}
+
+@keyframes hideMenu 
+{
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
 
 
 /*---------------- Footer bar component -------------------*/
