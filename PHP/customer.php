@@ -11,7 +11,11 @@
 #Andres Ardila      2021-04-12      added validation for max string length
 #Andres Ardila      2021-04-16      modify constructor added validation
 #Andres Ardila      2021-04-16      added save function
-#Andres Ardila      2021-04-16      added modification date 
+#Andres Ardila      2021-04-16      added modification date
+#Andres Ardila      2021-04-30      added login function
+
+
+
 
 require_once 'dbh.php';
 #The class Customer is inheriting from the class Dbh
@@ -31,6 +35,7 @@ class Customer extends Dbh
     private $pwd;
     private $creation_date;
     private $modification_date;
+    private $tempPws;
 
     private const FIRST_NAME_MAX_LEN = 20;
     private const LAST_NAME_MAX_LEN = 20;
@@ -155,7 +160,7 @@ class Customer extends Dbh
         return false;
     }
 
-    public function setUsername($username){
+    public function setUsername($username, $update=true){
         $username = htmlspecialchars(trim($username));
         if(strlen($username) > self::USERNAME_MAX_LEN) 
         {
@@ -165,12 +170,19 @@ class Customer extends Dbh
         {
             return "field empty";
         }
+        if($this->searchUsername($username) && $update)
+        {
+            $this->username = $username;
+            return "user already exists";
+        }
+        
         $this->username = $username;
         return false;
     }
 
     public function setPassword($pwd){
         $pwd = htmlspecialchars(trim($pwd));
+        $this->tempPws = $pwd;
         $pwd = password_hash($pwd,PASSWORD_DEFAULT);
         if($pwd == "")
         {
@@ -215,7 +227,7 @@ class Customer extends Dbh
     }
 
     public function getPwd(){
-        return $this->pwd;
+        return $this->tempPws;
     }
 
     #Methods
@@ -262,10 +274,10 @@ class Customer extends Dbh
         $PDOStatement->execute();
         $PDOStatement->closeCursor();
     }
-
-    public function load($username)
+// This function accepts the username or the uuid to load the customer data
+    public function load($usrOrId)
     {
-        if($row = $this->searchUsername($username))
+        if($row = $this->searchUsername($usrOrId))
         {
             $this->setId($row["customer_id"]);
             $this->setFirstName($row["firstname"]);
@@ -300,32 +312,29 @@ class Customer extends Dbh
         return false;
     }
 
-    public function login($username,$password){
+    public function login($username,$password)
+    {
 
-            $SQLQuery = "CALL customers_login(:username)";
-            $PDOStatement = $this->connect()->prepare($SQLQuery);
-            $PDOStatement->bindParam(":username",$username);
-            $PDOStatement->execute();
+        $SQLQuery = "CALL customers_login(:username)";
+        $PDOStatement = $this->connect()->prepare($SQLQuery);
+        $PDOStatement->bindParam(":username",$username);
+        $PDOStatement->execute();
 
-            if($row = $PDOStatement->fetch())
+        if($row = $PDOStatement->fetch())
+        {
+            $PDOStatement->closeCursor();
+            $hashedPwdDB = $row['pwd'];
+            if(password_verify($password,$hashedPwdDB))
             {
-
-                $PDOStatement->closeCursor();
-                $hashedPwdDB = $row['pwd'];
-                if(password_verify($password,$row['pwd']))
-                {
-                    // use the global variable SESSION to store the customer_id under the key uuid
-                    $_SESSION['uuid'] = $row['customer_id'];
-                    $_SESSION['user_name'] = $row['user_name'];
-                    $_SESSION['firstname'] = $row['firstname'];
-                    $_SESSION['lastname'] = $row['lastname'];
-                    return true;
-                }
-                
+                // use the global variable SESSION to store the customer_id under the key uuid
+                $_SESSION['uuid'] = $row['customer_id'];
+                $_SESSION['user_name'] = $row['user_name'];
+                $_SESSION['firstname'] = $row['firstname'];
+                $_SESSION['lastname'] = $row['lastname'];
+                return true;
             }
-            echo "does not exist";
-            return false;
+        }
+        return false;
     }
-    
 }
 ?>

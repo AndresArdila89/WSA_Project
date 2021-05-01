@@ -9,6 +9,7 @@
 #Andres Ardila      2021-04-17      added validation to all setters
 #Andres Ardila      2021-04-17      added load function
 
+
 require_once 'dbh.php';
 
 class Product extends Dbh
@@ -216,9 +217,13 @@ class Product extends Dbh
         $PDOStatement->closeCursor();
     }
 
-    public function load($product_code)
+    public function load($product_id)
     {
-        if($row = $this->searchByProductCode($product_code))
+        $SQLQuery = "CALL products_select(:id)";
+        $PDOStatement = $this->connect()->prepare($SQLQuery);
+        $PDOStatement->bindParam(":id",$product_id);
+        $PDOStatement->execute();
+        if($row = $PDOStatement->fetch())
         {
             $this->setId($row['product_id']);
             $this->setCode($row['product_code']);
@@ -227,7 +232,14 @@ class Product extends Dbh
             $this->setCost($row['cost']);
             $this->setCreationDate($row['creation_date']);
             $this->setModificationDate($row['modification_date']);
+            $PDOStatement->closeCursor();
+            return true;
         }
+
+        $PDOStatement->closeCursor();
+        return false;
+        
+
     }
     
 }

@@ -16,22 +16,25 @@
 
   <nav class="nav-signin">
     <?php
-    if(isset($_POST['signin']))
-{
-    $customer = new Customer();
-    $customer->login($_POST['username'], $_POST['password']);
-}
+      $errorLogin="";
+      if(isset($_POST['signin']))
+      {   
+        $customer = new Customer();
+        $errorLogin = $customer->login($_POST['username'], $_POST['password']) ? "": "Username or Password incorrect";
+      }
+
       if(isset($_SESSION['uuid']))
       {
         ?>    
           <form action="" method="POST">
+          <h3 class="white-text"><a href="register.php"> <?php echo $_SESSION['firstname'] . ", " . $_SESSION['lastname']; ?> </a></h3> 
             <input type="submit" name="logout" value="logout">
           </form>
         <?php
       }
       else
       {
-        loadLogin();
+        loadLogin($errorLogin);
       }
         ?>
   </nav>

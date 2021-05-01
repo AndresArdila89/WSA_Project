@@ -22,3 +22,4 @@ product price (if price change older orders should not be affected)
 comments (max 200, optional)
 created_date
 modify date
+

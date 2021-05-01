@@ -13,7 +13,7 @@ define("FILE_CSS_STYLE",FOLDER_CSS . "style.css");
 // LINKS
 define("PAGE_HOME","index.php");
 define("PAGE_ORDERS","orders.php");
-define("PAGE_SHOP","shop.php");
+define("PAGE_SHOP","buy.php");
 define("PAGE_CHEAT_SHEET",FOLDER_DATA . "cheat_sheet.txt");
 define("URL_ADS", "https://github.com/AndresArdila89");
 
@@ -29,7 +29,7 @@ define("IMAGES_ADS",array('ads_1.png','ads_2.png','ads_3.png'));
 
 //NAVIGATION BAR 
 define("NAV_TABS",array('HOME'=> PAGE_HOME,
-                        'SHOP'=> PAGE_SHOP,
+                        'BUY'=> PAGE_SHOP,
                         'ORDERS'=> PAGE_ORDERS,
                         'CHEAT SHEET'=> PAGE_CHEAT_SHEET
                         ));

@@ -28,9 +28,14 @@
 #Andres Ardila (student_id)   2021-02-24    added all the constants for the form validation criteria
 #Andres Ardila (student_id)   2021-04-09    fix comments box from clearing after validation error
 #Andres Ardila (student_id)   2021-04-28    add login condition, show login option.
+#Andres Ardila (student_id)   2021-04-29    fix the form adding Product code field
+#Andres Ardila (student_id)   2021-04-29    fix the form adding quatity field
+#Andres Ardila (student_id)   2021-04-29    fix the form adding comments field 
+#Andres Ardila (student_id)   2021-04-29    fill the combobox with a list of products from the database 
+#Andres Ardila (student_id)   2021-04-30    saving purchase into the database  
+#Andres Ardila (student_id)   2021-04-30    clearing the fields and setting the validations  
 
 require_once "PHP/loader.php";
-require_once  FORM_VALIDATION;
 loadTopElements("SHOP");
 ?>
 
@@ -55,54 +60,76 @@ loadTopElements("SHOP");
 
   <div class="content">
   <?php 
+      $errorQuantity = "";
+      $errorComments = "";
+      $price="";
+      $comments="";
+      $success = true;
+      $purchase = new Purchase();
       if(!isset($_SESSION['uuid'])){
 
         echo "<div> <h2> To Access this page first you need to login </h2></div>";
       }
-      else {
-        
+      else 
+      {
+        if(isset($_POST['buy']))
+        { 
+          $product = new Product();
+          echo $_POST['product_id']; 
+          $product->load($_POST['product_id']);
+          
+          $purchase->setCustomerFK($_SESSION['uuid']);
+          $purchase->setProductFK($_POST['product_id']);
+          $purchase->setProductPrice($product->getPrice());
+          
+          $price = $purchase->getProductPrice();
+          $comments = $purchase->getComments();
+
+          if($errorQuantity = $purchase->setQuantity($_POST['quantity']))
+          {
+            $success = false;
+          }
+          if($errorComments = $purchase->setComments($_POST['comments']))
+          {
+            $success = false;
+          }
+          if($success)
+          {
+            $purchase->setSubtotal();
+            $purchase->setTaxAmount();
+            $purchase->setGrandTotal(); 
+            $purchase->save();
+            $price = "";
+            $comments = "";
+          }
+        }
   ?>
-  
-  
-    <form action="shop.php" method="post" class="form">
+
+    <form action="buy.php" method="post" class="form">
       <!-- ROW -->
       <div class="form-section"> 
         <div class="form-element">
-          <label for="product_code">Product Code: <span class="form-error"><?php echo $errorProductCode; ?></span></label>
-          <input type="text" id="product_code" name="product_code" value='<?php  echo $productCode;?>'>
+          <label for="product_id">Product Code: <span class="form-error"></span></label>
+          <select name="product_id" id="product_id">
+                <?php 
+                    $products = new Products();
+                    foreach($products->listAll() as $id=>$product){
+                        echo "<option value='$id'>" . 
+                        $product->getProductCode() . " - " . 
+                        $product->getDescription() . " (". 
+                        $product->getPrice() .")</option>";
+                    }
+                ?>
+          </select>
         </div>
       </div>
 
       <!-- ROW -->
       <div class="form-section">
-        <!-- FIRST NAME-->
-        <div class="form-element">
-          <label for="first_name">First Name: <span class="form-error"><?php echo $errorFirstName; ?></span></label>
-          <input type="text" id="first_name" name="first_name" value='<?php echo $firstName;?>'>
-        </div>
-        <!-- LAST NAME -->
-        <div class="form-element">
-          <label for="last_name">Last Name: <span class="form-error"><?php echo $errorLastName; ?></span></label>
-          <input type="text" id="last_name" name="last_name" value='<?php echo $lastName;?>'>
-        </div>
-      </div>
-
-      <!-- ROW -->
-      <div class="form-section">
-        <!-- CITY -->
-        <div class="form-element"> 
-          <label for="city">City: <span class="form-error"><?php echo $errorCity; ?></span></label>
-          <input type="text" id="city" name="city" value='<?php echo $city;?>'>
-        </div>
-        <!-- PRICE -->
-        <div class="form-element"> 
-          <label for="price">Price: <span class="form-error"><?php echo $errorPrice; ?></span></label>
-          <input type="text" id="price" name="price" value='<?php echo $price;?>'>
-        </div>
         <!-- QUANTITY -->
         <div class="form-element"> 
           <label for="quantity">Quantity: <span class="form-error"><?php echo $errorQuantity; ?></span></label>
-          <input type="text" id="quantity" name="quantity" value='<?php echo $quantity;?>'>
+          <input type="number" id="quantity" name="quantity" value='<?php echo $price;?>'>
         </div>
       </div>
 
@@ -111,7 +138,7 @@ loadTopElements("SHOP");
         <!-- COMMENTS -->
         <div class="form-element">
           <label for="comments">Comments: <span class="form-error"><?php echo $errorComments; ?></span></label>
-          <textarea  id="comments" name="comments"><?php echo $comments;?></textarea>
+          <textarea  id="comments" name="comments"><?php echo $comments; ?></textarea>
         </div>
       </div>
 
@@ -119,24 +146,11 @@ loadTopElements("SHOP");
       <div class="form-section">
         <!-- COMMENTS -->
         <div class="form-element">
-          <label for="disagree">
-            <input type="radio" id="agree" name="terms" value="agree">Agree
-            <input type="radio" id="disagree" name="terms" value="disagree">Disagree
-        </label>
-        </div>
-      </div>
-
-      <!-- ROW -->
-      <div class="form-section">
-        <!-- COMMENTS -->
-        <div class="form-element">
-          <button class="button" type="submit" name="Buy">Buy</button>
+          <button class="button" type="submit" name="buy">Buy</button>
         </div>
       </div>
     </form>
   </div>
-
-  
   <?php 
       }
 ?>

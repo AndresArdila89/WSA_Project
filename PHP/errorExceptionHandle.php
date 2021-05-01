@@ -11,7 +11,7 @@ $debug = true;
         
         $date = (new DateTime())->format('H:m:s:u');
         echo    "An error occured. The dev team is already...";
-        if($debug)
+        if(true)
         {
             echo    "An error ocoure in the file $File at line $Line:" .
             "Error number $Number: $Message.";
@@ -32,7 +32,7 @@ $debug = true;
     {
         global $debug;
 
-        if($debug)
+        if(true)
         {
             echo    " An error occured in the file " . $errorObject->getFile() . "at line " .
                     $errorObject->GetLine() . " " . $errorObject->getMessage();

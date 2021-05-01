@@ -101,6 +101,26 @@ a {
     text-decoration: none;
 }
 
+a:link {
+  color:var(--primary-text);
+}
+
+/* visited link */
+a:visited {
+  color:var(--primary-text);
+}
+
+/* mouse over link */
+a:hover {
+  color:var(--orange-text);
+}
+
+/* selected link */
+a:active {
+  color:var(--primary-text);
+}
+
+
 .image-full-width{
     width: 100%;
     height: auto;

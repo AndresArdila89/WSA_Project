@@ -5,9 +5,15 @@
 #Andres Ardila (student_id)   2021-03-13    
 #Andres Ardila (student_id)   2021-03-10    added loaderOrders function
 #Andres Ardila (student_id)   2021-04-28    added signUp form funtion    
+#Andres Ardila (student_id)   2021-04-29    added registrationValidationForm function    
 
 require_once "constants.php";
 require_once "PHP/customer.php";
+require_once "PHP/product.php";
+require_once "PHP/purchase.php";
+require_once "PHP/customers.php";
+require_once "PHP/products.php";
+require_once "PHP/purchases.php";
 // This function loads the head file and recibes as a parameter
 // the title of the page, this value changes the name of the page tab.
 function loadHead($title){
@@ -93,13 +99,14 @@ function loadOrders()
     <table class="table">
     <tr>
     <th>#</th>
+    <th>Delete</th>
     <th>Product Code</th>
     <th>First Name</th>
     <th>Last Name</th>
     <th>City</th>
+    <th>Comment</th>
     <th>Price</th>
     <th>Quantity</th>
-    <th>Comment</th>
     <th>Sub Total</th>
     <th>Tax Amount</th>
     <th>Grand Total</th>
@@ -113,13 +120,14 @@ function loadOrders()
 
     <tr>
     <td><?php echo $counter; ?></td>
+    <td><?php echo "<button value='123123'>delete</button>";?></td>
     <td><?php echo $value["productCode"]; ?></td>
     <td><?php echo $value["firstName"]; ?></td>
     <td><?php echo $value["lastName"]; ?></td>
     <td><?php echo $value["city"]; ?></td>
+    <td><?php echo $value["comments"]; ?></td>
     <td><?php echo number_format($value["price"],2). '$'; ?></td>
     <td><?php echo $value["quantity"]; ?></td>
-    <td><?php echo $value["comments"]; ?></td>
     <td class="<?php changeSubTotalColor($value["subTotal"]); ?>"><?php echo number_format($value["subTotal"],2). '$'; ?></td>
     <td><?php echo number_format($value["taxAmount"],2). '$'; ?></td>
     <td><?php echo number_format($value["grandTotal"],2) . '$'; ?></td>
@@ -199,11 +207,11 @@ function hasNumbers($str)
 
 // project 3 code
 
+//----------------> REGISTRATION FORM VALIDATION 
 
 
+function loadLogin($errorLogin=""){
 
-
-function loadLogin(){
 
     ?>
           <button onclick="menu()">Login</button>
@@ -221,7 +229,7 @@ function loadLogin(){
                     <!-- ROW -->
                     <div class="form-section"> 
                         <div class="form-element">
-                            <label>Username: <span class="form-error">error here</span></label>
+                            <label>Username: <span class="form-error"><?php echo $errorLogin;?></span></label>
                             <input type="text" name="username" placeholder="Username">
                         </div>
                     </div>
@@ -229,7 +237,7 @@ function loadLogin(){
                     <!-- ROW -->
                     <div class="form-section"> 
                         <div class="form-element">
-                            <label > Password: <span class="form-error">Error here</span></label>
+                            <label > Password: <span class="form-error"></span></label>
                             <input type="password"  name="password" placeholder="Password">
                         </div>
                     </div>
@@ -251,6 +259,11 @@ function loadLogin(){
             </div>
     <?php
 }
+
+
+
+
+
 
 
 ?>
