@@ -31,6 +31,28 @@
 }
 
 
+.redFont{
+    color: red;
+}
+.blue-text{
+    color:var(--light-text);
+}
+
+.red-text{
+    color: red;
+}
+.lightOrange-text{
+    color:var(--orange-text);
+}
+.green-text{
+    color:var(--secondary-text);
+}
+.white-text{
+    color: var(--primary-text);
+}
+.primary-text{
+    color: var(--secondary-color);
+}
 
 
 @font-face {
@@ -435,28 +457,6 @@ textarea {
 }
 
 
-.redFont{
-    color: red;
-}
-.blue-text{
-    color:var(--light-text);
-}
-
-.red-text{
-    color: red;
-}
-.lightOrange-text{
-    color:var(--orange-text);
-}
-.green-text{
-    color:var(--secondary-text);
-}
-.white-text{
-    color: var(--primary-text);
-}
-.primary-text{
-    color: var(--secondary-color);
-}
 /*--------signup form------------*/
 
 .logo-signup {

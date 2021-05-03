@@ -120,7 +120,7 @@ function loadOrders()
 
     <tr>
     <td><?php echo $counter; ?></td>
-    <td><?php echo "<button value='123123'>delete</button>";?></td>
+    <td><?php echo "<button onclick='test()'>delete</button>";?></td>
     <td><?php echo $value["productCode"]; ?></td>
     <td><?php echo $value["firstName"]; ?></td>
     <td><?php echo $value["lastName"]; ?></td>

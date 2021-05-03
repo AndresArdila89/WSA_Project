@@ -17,13 +17,23 @@ loadTopElements("ABOUT");
             <h1 class="center-text primary-text">All Orders</h1>
             <a href="orders.php?command=print" class="link_button_primary">Print Mode</a>
             <a href="orders.php?command=color" class="link_button_primary">Color Mode</a>
+            <div>
+                <input id="search" type="date" value="2021-03-01">
+                <button onclick="search()">Search by date</button>
+            </div>
     </div>
     <div class="about">
     
      <?php 
         if(isset($_SESSION['uuid']))
         {
-            loadOrders();
+            ?>
+                
+            <table class="table" id="purchases_table">
+                <script>search();</script>
+            </table>
+
+            <?php
         }
         else
         {

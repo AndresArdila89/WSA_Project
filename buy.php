@@ -64,6 +64,7 @@ loadTopElements("SHOP");
       $errorComments = "";
       $price="";
       $comments="";
+      $confirmation = "";
       $success = true;
       $purchase = new Purchase();
       if(!isset($_SESSION['uuid'])){
@@ -75,7 +76,6 @@ loadTopElements("SHOP");
         if(isset($_POST['buy']))
         { 
           $product = new Product();
-          echo $_POST['product_id']; 
           $product->load($_POST['product_id']);
           
           $purchase->setCustomerFK($_SESSION['uuid']);
@@ -101,13 +101,21 @@ loadTopElements("SHOP");
             $purchase->save();
             $price = "";
             $comments = "";
+            $confirmation = 'Order Placed Successfully';
+            unset($_POST['buy']);
           }
         }
   ?>
 
     <form action="buy.php" method="post" class="form">
+
+      <div class="form-section">
+        <div class="form-element">
+          <?php echo "<span class='green-text'>$confirmation</span>";?>
+        </div>
+      </div>
       <!-- ROW -->
-      <div class="form-section"> 
+      <div class="form-section">
         <div class="form-element">
           <label for="product_id">Product Code: <span class="form-error"></span></label>
           <select name="product_id" id="product_id">

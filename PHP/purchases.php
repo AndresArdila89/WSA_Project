@@ -7,7 +7,6 @@
 
 require_once 'purchase.php';
 require_once 'collection.php';
-
 class Purchases extends Collection
 {
     // Constructor loads all the Products from the database into and array
@@ -20,10 +19,10 @@ class Purchases extends Collection
         $PDOStatement->execute();
         // fetch the data from the PDO
         while($row = $PDOStatement->fetch())
-        {
+        {   
             //adding object to the collection 
             $obj = new Purchase($row);
-            $this->add($obj->getId(), $obj); 
+            $this->add($obj->getId(), $obj);
         }
         $PDOStatement->closeCursor();
     }

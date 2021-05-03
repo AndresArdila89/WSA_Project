@@ -43,8 +43,8 @@ class Purchase extends Dbh
         {
             $this->setId($row['purchase_id']);
             $this->setCustomerFK($row['customer_fk']);
-            $this->setProductFK($row['product_fk']);
-            $this->setQuantity($row['quantity']);
+            $this->setProductFK($row['product_fk']);           
+            $this->quantity = $row['quantity'];
             $this->setProductPrice($row['product_price']);
             $this->setComments($row['comments']);
             $this->setCreationDate($row['creation_date']);
