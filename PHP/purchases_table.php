@@ -1,37 +1,37 @@
 <?php
-    
-    require_once "dbh.php";
-    require_once "customer.php";
-    require_once "customers.php";
-    require_once "product.php";
-    require_once "products.php";
-    require_once "purchase.php";
-    require_once "purchases.php";
+#REVISION HISTORY:
+#DEVELOPER          DATE            COMMENT
+#Andres Ardila      2021-05-02      created html table
+#Andres Ardila      2021-05-02      created search by date querty
+#Andres Ardila      2021-05-02      created delete purchase querty
 
-    header('Content-type: text/plain');
-    
+require_once "dbh.php";
+header('Content-type: text/plain');
+session_start();
+// declared and instatiated the database handler 
+$dbh = new Dbh();
 
-    $dbh = new Dbh();
-    if(isset($_POST['deleteRow']))
-    {
-        $id = htmlspecialchars($_POST['deleteRow']);
-        $SQLQuery = 'CALL purchases_delete(:id)';
-        $PDOStatement = $dbh->connect()->prepare($SQLQuery);
-        $PDOStatement->bindParam(':id',$id);
-        $PDOStatement->execute();
-        $PDOStatement->closeCursor();
-    }
-    
-    if(isset($_POST['date']))
-    {   
-        $date = date(htmlspecialchars($_POST['date']));
-        $SQLQuery = 'CALL filter_by_date(:date)';
-        $PDOStatement = $dbh->connect()->prepare($SQLQuery);
-        $PDOStatement->bindParam(':date', $date);
-        $PDOStatement->execute();
+// delete purchase query
+if(isset($_POST['deleteRow']))
+{
+    $id = htmlspecialchars($_POST['deleteRow']);
+    $SQLQuery = 'CALL purchases_delete(:id)';
+    $PDOStatement = $dbh->connect()->prepare($SQLQuery);
+    $PDOStatement->bindParam(':id',$id);
+    $PDOStatement->execute();
+    $PDOStatement->closeCursor();
+}
+// update table according to the date selected
+if(isset($_POST['date']))
+{  
+    $id = $_SESSION['uuid'];
+    $date = date(htmlspecialchars($_POST['date']));
+    $SQLQuery = 'CALL filter_by_date(:date,:uuid)';
+    $PDOStatement = $dbh->connect()->prepare($SQLQuery);
+    $PDOStatement->bindParam(':date', $date);
+    $PDOStatement->bindParam(':uuid', $id);
+    $PDOStatement->execute();
 ?>
-    
-    
     <tr>
     <th>#</th>
     <th>Delete</th>
@@ -47,10 +47,9 @@
     <th>Grand Total</th>
     </tr>
 <?php
+// featch the data form the PDO
     while($row = $PDOStatement->fetch())
     {
-
-
 ?>
     <tr>
     <td><?php echo $counter= $counter + 1 ?></td>
@@ -65,12 +64,9 @@
     <td><?php echo $row['Subtotal'] ?></td>
     <td><?php echo $row['Taxes Amount'] ?></td>
     <td><?php echo $row['Grand Total'] ?></td>
-
     </tr>
 <?php
     }
         $PDOStatement->closeCursor();
     }
-    ?>
-   
-  
+?>
